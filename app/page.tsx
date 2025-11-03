@@ -126,9 +126,7 @@ export default function TorchlineLanding() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
             >
-              Vision AI
-              <br />
-              That
+              Vision AI That
               <br />
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                 Protects,
@@ -156,17 +154,9 @@ export default function TorchlineLanding() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-base sm:text-lg px-6 sm:px-8 shadow-[0_8px_30px_rgba(249,115,22,0.35)] transition-all"
+                className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 shadow-[0_8px_30px_rgba(249,115,22,0.35)] transition-all"
               >
                 Join Waitlist
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 hover:border-white/40 hover:bg-white/10 text-white text-base sm:text-lg px-6 sm:px-8 bg-transparent"
-              >
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Watch Demo
               </Button>
             </motion.div>
             <motion.div
