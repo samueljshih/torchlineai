@@ -143,7 +143,7 @@ export default function TorchlineLanding() {
               className="text-lg sm:text-xl md:text-2xl text-zinc-200 max-w-3xl"
             >
               Torchline keeps every shift safe, consistent, and compliant by
-              layering intelligence onto the cameras you already have—no extra
+              layering intelligence onto the cameras you already have no extra
               hardware, no extra busywork.
             </motion.p>
             <motion.div
@@ -222,10 +222,10 @@ export default function TorchlineLanding() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent pointer-events-none" />
               <video
                 className="w-full aspect-video"
-                src="/torchline_updated.mp4"
+                src="https://dkx9dfh6k5q2jmwm.public.blob.vercel-storage.com/torchline_updated.mp4"
                 controls
                 preload="metadata"
-                poster="/torchline-video-placeholder.jpg"
+                poster="https://dkx9dfh6k5q2jmwm.public.blob.vercel-storage.com/torchline_placeholder.jpg"
               />
             </motion.div>
           </div>
