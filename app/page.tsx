@@ -222,7 +222,7 @@ export default function TorchlineLanding() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent pointer-events-none" />
               <video
                 className="w-full aspect-video"
-                src="https://dkx9dfh6k5q2jmwm.public.blob.vercel-storage.com/torchline_updated.mp4"
+                src="https://pub-e824d08276a445f3a03a35b7112dff8e.r2.dev/torchline_updated.mp4"
                 controls
                 preload="metadata"
                 poster="https://dkx9dfh6k5q2jmwm.public.blob.vercel-storage.com/torchline_placeholder.jpg"
