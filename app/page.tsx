@@ -70,11 +70,42 @@ const staggerItem: Variants = {
 export default function TorchlineLanding() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      setIsSubmitting(true);
+      setErrorMessage(null);
+      setIsSubmitted(false);
+
+      const response = await fetch("https://formspree.io/f/xnnezzqb", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+
+      if (response.ok) {
+        setEmail("");
+        setIsSubmitted(true);
+        form.reset();
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        const data = await response.json().catch(() => null);
+        setErrorMessage(
+          data?.error || "We couldn’t submit your email. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Waitlist submission failed", error);
+      setErrorMessage("Something went wrong. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -99,8 +130,11 @@ export default function TorchlineLanding() {
               Torchline AI
             </span>
           </div>
-          <Button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-sm sm:text-base px-4 sm:px-6">
-            Join Waitlist
+          <Button
+            asChild
+            className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-sm sm:text-base px-4 sm:px-6"
+          >
+            <a href="#join-waitlist">Join Waitlist</a>
           </Button>
         </div>
       </nav>
@@ -153,10 +187,11 @@ export default function TorchlineLanding() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center pt-2"
             >
               <Button
+                asChild
                 size="lg"
                 className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 shadow-[0_8px_30px_rgba(249,115,22,0.35)] transition-all"
               >
-                Join Waitlist
+                <a href="#join-waitlist">Join Waitlist</a>
               </Button>
             </motion.div>
             <motion.div
@@ -922,7 +957,10 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-black via-zinc-900 to-orange-950/20">
+      <section
+        id="join-waitlist"
+        className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-black via-zinc-900 to-orange-950/20"
+      >
         <div className="absolute inset-0 opacity-30">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-t from-orange-500/30 to-transparent blur-[120px]" />
         </div>
@@ -950,23 +988,32 @@ export default function TorchlineLanding() {
                 onSubmit={handleSubmit}
                 className="space-y-5 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_65px_-40px_rgba(249,115,22,0.8)] backdrop-blur-xl"
               >
+                <input type="hidden" name="form" value="torchline-waitlist" />
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <Input
                     type="email"
+                    name="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    disabled={isSubmitting}
                     className="flex-1 border-white/20 bg-black/40 py-4 text-lg text-white placeholder:text-zinc-500 focus:border-orange-500"
                   />
                   <Button
                     type="submit"
                     size="lg"
+                    disabled={isSubmitting}
                     className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 px-8 py-4 text-lg text-white border-0 whitespace-nowrap shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
                   >
-                    Join Waitlist
+                    {isSubmitting ? "Submitting..." : "Join Waitlist"}
                   </Button>
                 </div>
+                {errorMessage && (
+                  <p className="text-sm text-red-400 animate-in fade-in">
+                    {errorMessage}
+                  </p>
+                )}
                 {isSubmitted && (
                   <p className="text-sm text-green-500 animate-in fade-in">
                     Thanks! We'll be in touch soon.
