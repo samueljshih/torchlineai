@@ -296,25 +296,25 @@ export default function TorchlineLanding() {
                   {
                     icon: Users2,
                     title: "High Turnover",
-                    description: "Hospitality averages 70–80% annual churn.",
+                    description: "U.S. restaurant turnover hit 65.8% in 2024. When teams rotate that fast, consistency becomes the problem.",
                   },
                   {
                     icon: TrendingDown,
                     title: "Operational Shrink",
                     description:
-                      "Retail & food operators lose 1.6% of sales—over $100B industry-wide.",
+                      "Shrink averages 1.6% of sales. That's $112B in a single year across retail.",
                   },
                   {
                     icon: Gavel,
                     title: "Compliance Exposure",
                     description:
-                      "Labor, safety, and wage-hour issues remain top legal and insurance risks.",
+                      "Back wages recovered by the U.S. Department of Labor topped $259M in FY2025. Wage-hour mistakes get enforced.",
                   },
                   {
                     icon: Camera,
                     title: "Fragmented Oversight",
                     description:
-                      "80% have cameras but lack insight—systems miss early warning signals.",
+                      "71% report cameras are already on-site. But most systems still produce footage, not answers.",
                   },
                 ].map((item) => (
                   <div
@@ -629,18 +629,18 @@ export default function TorchlineLanding() {
                 {[
                   {
                     icon: Sparkles,
-                    stat: "70%",
-                    description: "AI vision costs down since 2019",
+                    stat: "280×",
+                    description: "AI inference costs dropped from Nov 2022 to Oct 2024",
                   },
                   {
                     icon: Camera,
-                    stat: "80%",
-                    description: "Operators already camera equipped",
+                    stat: "71%",
+                    description: "Cameras are already in place",
                   },
                   {
                     icon: Gavel,
-                    stat: "62%",
-                    description: "Labor lawsuits up in five years",
+                    stat: "+20.9%",
+                    description: "Labor class actions up since 2020",
                   },
                   {
                     icon: ShieldCheck,
