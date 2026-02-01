@@ -176,9 +176,15 @@ export default function TorchlineLanding() {
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
               className="text-lg sm:text-xl md:text-2xl text-zinc-200 max-w-3xl"
             >
-              Torchline keeps every shift safe, consistent, and compliant by
-              layering intelligence onto the cameras you already have no extra
-              hardware, no extra busywork.
+              Torchline AI adds operational intelligence to the cameras you already have. Teams stay safe, consistent, and compliant without new hardware or extra busywork.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-3xl"
+            >
+              Torchline AI surfaces exceptions, organizes evidence, and delivers coaching clips from the video you already capture.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -202,11 +208,11 @@ export default function TorchlineLanding() {
             >
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-orange-400" />
-                <span>Operator-built. Privacy-first. Audit-ready.</span>
+                <span>Operator-built. Role-based access and retention controls included.</span>
               </div>
               <div className="flex items-center gap-2 text-zinc-400">
                 <CheckCircle2 className="h-5 w-5 text-orange-300" />
-                <span>Trusted across restaurants, retail, and hospitality</span>
+                <span>Designed for restaurants, retail, and hospitality teams</span>
               </div>
             </motion.div>
           </div>
@@ -235,7 +241,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white"
             >
-              Inside the Torchline Command Center
+              Inside the Torchline AI Command Center
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -244,8 +250,16 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="max-w-3xl text-base sm:text-lg text-zinc-300"
             >
-              See how the platform transforms everyday camera feeds into
-              real-time coaching, compliance, and operational intelligence.
+              See how Torchline AI turns everyday camera feeds into clear operational signals for coaching, compliance, and multi-site oversight.
+            </motion.p>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="max-w-3xl text-sm sm:text-base text-zinc-400"
+            >
+              Most teams start with a few high-priority standards, then add more over time.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -285,10 +299,7 @@ export default function TorchlineLanding() {
               </h2>
               <div className="space-y-3 sm:space-y-4 text-base sm:text-lg text-zinc-700">
                 <p>
-                  Even the best operators lose money every day to things they
-                  can't see. Missed procedures, skipped breaks, hygiene lapses,
-                  and preventable losses that slip through the cracks of busy
-                  shifts.
+                  Even strong operators lose margin to what can't be verified mid-shift. Missed steps. Skipped breaks. Hygiene lapses. Preventable loss.
                 </p>
               </div>
               <div className="grid gap-3 sm:gap-4 text-left">
@@ -296,13 +307,13 @@ export default function TorchlineLanding() {
                   {
                     icon: Users2,
                     title: "High Turnover",
-                    description: "U.S. restaurant turnover hit 65.8% in 2024. When teams rotate that fast, consistency becomes the problem.",
+                    description: "U.S. restaurant turnover hit 65.8% in 2024. Consistency breaks when teams rotate this fast.",
                   },
                   {
                     icon: TrendingDown,
                     title: "Operational Shrink",
                     description:
-                      "Shrink averages 1.6% of sales. That's $112B in a single year across retail.",
+                      "Shrink averages 1.6% of sales. That is $112B in one year across retail. Similar leakage shows up anywhere volume is high and oversight is thin.",
                   },
                   {
                     icon: Gavel,
@@ -337,7 +348,7 @@ export default function TorchlineLanding() {
               </div>
               <div className="pt-6 space-y-1 text-base sm:text-lg text-zinc-800">
                 <p>Operators think cameras protect them.</p>
-                <p>They don't. Not until they become intelligent.</p>
+                <p>They don't until video becomes operational proof.</p>
               </div>
             </motion.div>
             <motion.div
@@ -372,16 +383,17 @@ export default function TorchlineLanding() {
               className="text-center space-y-3 sm:space-y-4"
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                AI That Works Like A{" "}
+                AI That Works Like a{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   Manager,
                 </span>{" "}
-                Not A Monitor
+                Not a Monitor
               </h2>
               <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-4">
-                Torchline AI turns the cameras you already have into an
-                intelligent layer that helps teams stay safe, consistent, and
-                compliant without adding extra work.
+                Torchline AI turns your existing cameras into an intelligence layer that surfaces exceptions, speeds up coaching, and strengthens compliance. It does this without adding screens to watch.
+              </p>
+              <p className="text-sm sm:text-base text-zinc-500 max-w-2xl mx-auto px-4">
+                Examples include break adherence, handwashing frequency, restricted-area access, opening and closing routines, and register exceptions.
               </p>
             </motion.div>
 
@@ -395,21 +407,21 @@ export default function TorchlineLanding() {
               {[
                 {
                   title: "Protect",
-                  tagline: "Every action accounted for",
+                  tagline: "Exceptions Captured",
                   description:
-                    "Automatic detection keeps safety, hygiene, and labor playbooks buttoned up.",
+                    "Automatic detection flags safety, hygiene, and labor-risk moments. Key events are time-stamped and organized for review.",
                 },
                 {
                   title: "Coach",
-                  tagline: "Every moment teachable",
+                  tagline: "Coaching in Seconds",
                   description:
-                    "Feedback-ready clips help teams course-correct and celebrate wins in seconds.",
+                    "Auto-tagged clips make feedback fast. Onboarding becomes smoother. Standards are easier to reinforce.",
                 },
                 {
                   title: "Elevate",
-                  tagline: "Every standard elevated",
+                  tagline: "Patterns Across Locations",
                   description:
-                    "Shift intelligence surfaces patterns leaders can scale across locations.",
+                    "Trend views show where execution drifts and where it wins. Leaders can standardize what works.",
                 },
               ].map((item, index) => (
                 <motion.div
@@ -494,11 +506,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-zinc-700 leading-relaxed">
-                Torchline AI automatically detects and documents safety,
-                hygiene, and labor-compliance events. From handwashing to breaks
-                to food handling, every action is timestamped and archived
-                creating a digital record that protects operators from lawsuits,
-                claims, and brand risk.
+                Torchline AI detects and documents key safety, hygiene, and labor-compliance events. It creates a time-stamped audit trail for incident review and internal accountability.
               </p>
             </motion.div>
           </div>
@@ -521,9 +529,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
-                Torchline AI transforms live operations into teachable moments.
-                Our AI auto-tags clips of both misses and wins, helping managers
-                deliver quick, visual feedback that reinforces SOPs and culture.
+                Torchline AI turns real shift moments into ready-to-share coaching clips. Managers reinforce SOPs with less effort and more consistency.
               </p>
             </motion.div>
             <motion.div
@@ -580,10 +586,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="text-base sm:text-lg text-zinc-700 leading-relaxed">
-                Torchline AI analyzes patterns across shifts to reveal what
-                drives better service, faster throughput, and cleaner execution.
-                It connects behavior to performance so leaders can reward and
-                replicate what works.
+                Torchline AI surfaces patterns across shifts and stores. Leaders spot drift early, replicate best practices, and improve execution at scale.
               </p>
             </motion.div>
           </div>
@@ -623,29 +626,29 @@ export default function TorchlineLanding() {
               className="space-y-6 text-base sm:text-lg text-zinc-400"
             >
               <p className="text-lg sm:text-xl px-4">
-                The hardware is already there. The need has never been greater.
+                The hardware is already there. The gap is turning video into something teams can use.
               </p>
               <div className="grid gap-4 px-2 sm:grid-cols-2 sm:px-4 md:grid-cols-4">
                 {[
                   {
                     icon: Sparkles,
                     stat: "280×",
-                    description: "AI inference costs dropped from Nov 2022 to Oct 2024",
+                    description: "AI inference costs dropped from Nov 2022 to Oct 2024. Real-time analysis is now far more practical.",
                   },
                   {
                     icon: Camera,
                     stat: "71%",
-                    description: "Cameras are already in place",
+                    description: "Cameras are already in place.",
                   },
                   {
                     icon: Gavel,
                     stat: "+20.9%",
-                    description: "Labor class actions up since 2020",
+                    description: "Labor class actions are up since 2020. Documentation and timelines matter more than ever.",
                   },
                   {
                     icon: ShieldCheck,
-                    stat: "Premiums",
-                    description: "Insurers reward AI-verified compliance",
+                    stat: "Claims",
+                    description: "Better documentation speeds investigations and reduces ambiguity when incidents happen.",
                   },
                 ].map((item) => (
                   <div
@@ -658,21 +661,26 @@ export default function TorchlineLanding() {
                         {item.stat}
                       </span>
                     </div>
-                    {item.stat === "Premiums" ? (
-                      <p className="mt-3 text-sm text-zinc-300/90">
-                        <span className="mr-1 text-lg font-semibold text-white">
-                          ↓
-                        </span>
-                        {item.description}
-                      </p>
-                    ) : (
-                      <p className="mt-3 text-sm text-zinc-300/90">
-                        {item.description}
-                      </p>
-                    )}
+                    <p className="mt-3 text-sm text-zinc-300/90">
+                      {item.description}
+                    </p>
                   </div>
                 ))}
               </div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                className="mt-6 text-center"
+              >
+                <p className="text-xs text-zinc-500">
+                  <a href="#" className="underline hover:text-orange-400 transition-colors">View data sources</a>
+                </p>
+                <p className="mt-1 text-xs text-zinc-600">
+                  Public reports from BofA, DOL, NRF, and industry surveys.
+                </p>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -714,13 +722,13 @@ export default function TorchlineLanding() {
                   icon: Store,
                   title: "Convenience Stores",
                   description:
-                    "24/7 visibility and proactive shrink prevention.",
+                    "24/7 visibility with early signals for loss and operational gaps.",
                 },
                 {
                   icon: Coffee,
                   title: "Coffee Chains",
                   description:
-                    "Queue timing, beverage standards, and service quality.",
+                    "Queue flow, beverage standards, and service consistency.",
                 },
                 {
                   icon: Building2,
@@ -732,13 +740,13 @@ export default function TorchlineLanding() {
                   icon: ShoppingBag,
                   title: "Retail Stores & Malls",
                   description:
-                    "Planogram adherence, loss control, and guest experience.",
+                    "Loss control, standards verification, and guest experience.",
                 },
                 {
                   icon: Users,
                   title: "Corporate Offices & HQ",
                   description:
-                    "Executive war-rooms, training centers, and multi-site oversight.",
+                    "Multi-site visibility for ops leaders, training teams, and audits.",
                 },
               ].map((item) => (
                 <motion.div
@@ -795,11 +803,10 @@ export default function TorchlineLanding() {
               className="space-y-3 sm:space-y-4"
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-                The Torchline System
+                The Torchline AI System
               </h2>
               <p className="text-base sm:text-lg text-zinc-300">
-                Torchline AI is a manager's assistant, a compliance officer, and
-                a training coach all in one.
+                Torchline AI turns video into daily oversight. Exceptions, evidence, and coaching stay organized for every shift.
               </p>
             </motion.div>
             <motion.div
@@ -857,6 +864,37 @@ export default function TorchlineLanding() {
                 </motion.div>
               ))}
             </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="mt-12 sm:mt-16"
+            >
+              <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">
+                How It Works
+              </h3>
+              <div className="max-w-2xl mx-auto space-y-3">
+                {[
+                  "Connect your existing cameras",
+                  "Torchline AI detects exceptions and key events",
+                  "Managers review clips and timelines",
+                  "Coaching happens in minutes, not meetings",
+                  "Trends roll up across shifts and locations",
+                ].map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-4 backdrop-blur-sm"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-sm font-semibold text-white">
+                      {index + 1}
+                    </div>
+                    <p className="text-base text-zinc-300 pt-1">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -909,24 +947,24 @@ export default function TorchlineLanding() {
                   icon: Database,
                   title: "Proprietary Dataset",
                   description:
-                    "Every shift trains our system and builds a moat no one else can match.",
+                    "Torchline AI builds a reference library of real workflows and exceptions. Performance improves as coverage expands.",
                 },
                 {
                   icon: ShieldCheck,
-                  title: "Legal AI Engine",
+                  title: "Audit Trail Foundation",
                   description:
-                    "Designed to protect operators with defensible, audit-ready data.",
+                    "Time-stamped logs and supporting clips for incident review and compliance questions.",
                 },
                 {
                   icon: LineChart,
-                  title: "Capital Efficient Model",
+                  title: "Capital-Efficient Deployment",
                   description:
-                    "Torchline scales like software, leveraging existing camera infrastructure for instant deployment.",
+                    "Software-first rollout using existing cameras for faster onboarding.",
                 },
                 {
                   icon: Users,
                   title: "Operator-Built Insight",
-                  description: "Created by real operators, for the frontline.",
+                  description: "Designed around real shift pressure and multi-unit consistency.",
                 },
               ].map((item) => (
                 <motion.div
@@ -975,12 +1013,11 @@ export default function TorchlineLanding() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
               Join the{" "}
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Torchline Beta
+                Torchline AI Beta
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-zinc-400 px-4">
-              Be the first to access Torchline AI insights, beta launches, and
-              vision tech updates.
+              Be first to access beta availability, product updates, and new capabilities.
             </p>
 
             <div className="mx-auto max-w-md px-4">
@@ -1021,7 +1058,7 @@ export default function TorchlineLanding() {
                 )}
                 <div className="flex items-center gap-2 text-xs text-zinc-400">
                   <ShieldCheck className="h-4 w-4 text-orange-300" />
-                  <span>No spam. Just frontline innovation.</span>
+                  <span>No spam. Just product updates.</span>
                 </div>
               </form>
             </div>
