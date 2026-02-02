@@ -421,11 +421,10 @@ export default function TorchlineLanding() {
               className="text-center space-y-3 sm:space-y-4"
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                AI That Works Like a{" "}
+                AI That Works Like a Manager,{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Manager,
-                </span>{" "}
-                Not a Monitor
+                  Not a Monitor
+                </span>
               </h2>
               <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
                 Torchline AI turns your existing cameras into an intelligence
