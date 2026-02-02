@@ -692,20 +692,6 @@ export default function TorchlineLanding() {
                   </div>
                 ))}
               </div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={fadeInUp}
-                className="mt-6 text-center"
-              >
-                <p className="text-xs text-zinc-500">
-                  <a href="#" className="underline hover:text-orange-400 transition-colors">View data sources</a>
-                </p>
-                <p className="mt-1 text-xs text-zinc-600">
-                  Public reports from BofA, DOL, NRF, and industry surveys.
-                </p>
-              </motion.div>
             </motion.div>
           </div>
         </div>
