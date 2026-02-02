@@ -182,7 +182,7 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-3xl text-balance px-6 sm:px-4"
+              className="text-sm sm:text-base md:text-lg text-zinc-300 max-w-3xl text-balance px-6 sm:px-4 italic"
             >
               Torchline AI surfaces exceptions, organizes evidence, and delivers coaching clips from the video you already capture.
             </motion.p>
