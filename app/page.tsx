@@ -928,42 +928,19 @@ export default function TorchlineLanding() {
               <div className="max-w-3xl mx-auto space-y-3">
                 {[
                   {
-                    text: (
-                      <>
-                        <strong>Connect</strong> your existing cameras
-                      </>
-                    ),
+                    text: "Connect your existing cameras",
                   },
                   {
-                    text: (
-                      <>
-                        Torchline AI <strong>detects</strong> exceptions and key
-                        events
-                      </>
-                    ),
+                    text: "Torchline AI detects exceptions and key events",
                   },
                   {
-                    text: (
-                      <>
-                        Managers <strong>review</strong> clips and timelines
-                      </>
-                    ),
+                    text: "Managers review clips and timelines",
                   },
                   {
-                    text: (
-                      <>
-                        <strong>Coaching</strong> happens in minutes, not
-                        meetings
-                      </>
-                    ),
+                    text: "Coaching happens in minutes, not meetings",
                   },
                   {
-                    text: (
-                      <>
-                        <strong>Trends</strong> roll up across shifts and
-                        locations
-                      </>
-                    ),
+                    text: "Trends roll up across shifts and locations",
                   },
                 ].map((step, index) => (
                   <div
