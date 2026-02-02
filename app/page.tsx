@@ -850,7 +850,7 @@ export default function TorchlineLanding() {
                   icon: Settings,
                   title: "Admin Panel",
                   description:
-                    "Users, training clips, audit logs—centralized and audit-ready.",
+                    "Users, training clips, and audit logs. Centralized and audit-ready.",
                 },
               ].map((item) => (
                 <motion.div
