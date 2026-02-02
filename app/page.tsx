@@ -307,25 +307,38 @@ export default function TorchlineLanding() {
                   {
                     icon: Users2,
                     title: "High Turnover",
-                    description: "U.S. restaurant turnover hit 65.8% in 2024. Consistency breaks when teams rotate this fast.",
+                    description: (
+                      <>
+                        U.S. restaurant turnover hit <strong>65.8% in 2024</strong>. Consistency breaks when teams rotate this fast.
+                      </>
+                    ),
                   },
                   {
                     icon: TrendingDown,
                     title: "Operational Shrink",
-                    description:
-                      "Shrink averages 1.6% of sales. That is $112B in one year across retail. Similar leakage shows up anywhere volume is high and oversight is thin.",
+                    description: (
+                      <>
+                        Shrink averages <strong>1.6% of sales</strong>. That is <strong>$112B</strong> in one year across retail. Similar leakage shows up anywhere volume is high and oversight is thin.
+                      </>
+                    ),
                   },
                   {
                     icon: Gavel,
                     title: "Compliance Exposure",
-                    description:
-                      "Back wages recovered by the U.S. Department of Labor topped $259M in FY2025. Wage-hour mistakes get enforced.",
+                    description: (
+                      <>
+                        Back wages recovered by the U.S. Department of Labor topped <strong>$259M in FY2025</strong>. Wage-hour mistakes get enforced.
+                      </>
+                    ),
                   },
                   {
                     icon: Camera,
                     title: "Fragmented Oversight",
-                    description:
-                      "71% report cameras are already on-site. But most systems still produce footage, not answers.",
+                    description: (
+                      <>
+                        <strong>71%</strong> report cameras are already on-site. But most systems still produce footage, not answers.
+                      </>
+                    ),
                   },
                 ].map((item) => (
                   <div
@@ -633,17 +646,29 @@ export default function TorchlineLanding() {
                   {
                     icon: Sparkles,
                     stat: "280×",
-                    description: "AI inference costs dropped from Nov 2022 to Oct 2024. Real-time analysis is now far more practical.",
+                    description: (
+                      <>
+                        AI inference costs dropped <strong>280-fold</strong> from Nov 2022 to Oct 2024. Real-time analysis is now far more practical.
+                      </>
+                    ),
                   },
                   {
                     icon: Camera,
                     stat: "71%",
-                    description: "Cameras are already in place.",
+                    description: (
+                      <>
+                        <strong>71%</strong> of operators have cameras already in place.
+                      </>
+                    ),
                   },
                   {
                     icon: Gavel,
                     stat: "+20.9%",
-                    description: "Labor class actions are up since 2020. Documentation and timelines matter more than ever.",
+                    description: (
+                      <>
+                        Labor class actions are up <strong>+20.9%</strong> since 2020. Documentation and timelines matter more than ever.
+                      </>
+                    ),
                   },
                   {
                     icon: ShieldCheck,
