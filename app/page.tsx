@@ -902,11 +902,8 @@ export default function TorchlineLanding() {
                   className="h-full"
                 >
                   <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-zinc-800/60 p-6 backdrop-blur-xl transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-32px_rgba(249,115,22,0.7)]">
-                    <div className="flex items-center gap-3 text-orange-300">
+                    <div className="flex items-center text-orange-300">
                       <item.icon className="h-6 w-6" />
-                      <span className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-300">
-                        Platform
-                      </span>
                     </div>
                     <h3 className="mt-4 text-lg font-semibold text-white sm:text-xl">
                       {item.title}
