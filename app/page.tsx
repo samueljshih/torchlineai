@@ -211,14 +211,14 @@ export default function TorchlineLanding() {
             >
               <div className="flex items-center gap-2 justify-center">
                 <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0" />
-                <span className="text-center lg:text-left whitespace-nowrap">
+                <span className="text-center lg:text-left lg:whitespace-nowrap">
                   Operator-built. Role-based access and retention controls
                   included.
                 </span>
               </div>
               <div className="flex items-center gap-2 justify-center text-zinc-400">
                 <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0" />
-                <span className="text-center lg:text-left whitespace-nowrap">
+                <span className="text-center lg:text-left lg:whitespace-nowrap">
                   Designed for restaurants, retail, and hospitality teams
                 </span>
               </div>
@@ -931,11 +931,44 @@ export default function TorchlineLanding() {
               </h3>
               <div className="max-w-2xl mx-auto space-y-3">
                 {[
-                  { text: <><strong>Connect</strong> your existing cameras</> },
-                  { text: <>Torchline AI <strong>detects</strong> exceptions and key events</> },
-                  { text: <>Managers <strong>review</strong> clips and timelines</> },
-                  { text: <><strong>Coaching</strong> happens in minutes, not meetings</> },
-                  { text: <><strong>Trends</strong> roll up across shifts and locations</> },
+                  {
+                    text: (
+                      <>
+                        <strong>Connect</strong> your existing cameras
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Torchline AI <strong>detects</strong> exceptions and key
+                        events
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Managers <strong>review</strong> clips and timelines
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        <strong>Coaching</strong> happens in minutes, not
+                        meetings
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        <strong>Trends</strong> roll up across shifts and
+                        locations
+                      </>
+                    ),
+                  },
                 ].map((step, index) => (
                   <div
                     key={index}
