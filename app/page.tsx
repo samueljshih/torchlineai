@@ -1064,9 +1064,6 @@ export default function TorchlineLanding() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white sm:h-14 sm:w-14">
                         <item.icon className="h-6 w-6 sm:h-7 sm:w-7" />
                       </div>
-                      <span className="text-xs font-medium uppercase tracking-[0.3em] text-orange-200/80">
-                        Advantage
-                      </span>
                     </div>
                     <h3 className="mt-5 text-xl font-semibold text-white sm:text-2xl">
                       {item.title}
