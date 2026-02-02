@@ -926,7 +926,7 @@ export default function TorchlineLanding() {
               <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">
                 How It Works
               </h3>
-              <div className="max-w-2xl mx-auto space-y-3">
+              <div className="max-w-3xl mx-auto space-y-3">
                 {[
                   {
                     text: (
@@ -969,12 +969,12 @@ export default function TorchlineLanding() {
                 ].map((step, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-4 backdrop-blur-sm min-h-[80px]"
+                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-5 backdrop-blur-sm"
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-sm font-semibold text-white">
                       {index + 1}
                     </div>
-                    <p className="text-base text-zinc-300 pt-1 flex items-center min-h-[32px]">{step.text}</p>
+                    <p className="text-base text-zinc-300">{step.text}</p>
                   </div>
                 ))}
               </div>
