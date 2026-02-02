@@ -723,12 +723,12 @@ export default function TorchlineLanding() {
                     className="group h-full rounded-2xl border border-white/10 bg-zinc-900/55 p-5 transition-all hover:border-orange-400/60 hover:shadow-[0_20px_55px_-30px_rgba(249,115,22,0.85)]"
                   >
                     <div className="flex items-center gap-3 text-orange-300">
-                      <item.icon className="h-5 w-5" />
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
                       <span className="text-3xl font-semibold text-white">
                         {item.stat}
                       </span>
                     </div>
-                    <p className="mt-3 text-sm text-zinc-300/90">
+                    <p className="mt-3 text-sm text-zinc-300/90 text-left">
                       {item.description}
                     </p>
                   </div>
