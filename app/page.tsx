@@ -209,16 +209,16 @@ export default function TorchlineLanding() {
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
               className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-3 lg:gap-6 text-sm lg:text-[15px] text-zinc-300/90 px-4"
             >
-              <div className="flex items-center gap-2 justify-center">
-                <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0" />
-                <span className="text-center lg:text-left lg:whitespace-nowrap">
+              <div className="flex items-start sm:items-center gap-2 justify-center">
+                <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0 mt-0.5 sm:mt-0" />
+                <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
                   Operator-built. Role-based access and retention controls
                   included.
                 </span>
               </div>
-              <div className="flex items-center gap-2 justify-center text-zinc-400">
-                <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0" />
-                <span className="text-center lg:text-left lg:whitespace-nowrap">
+              <div className="flex items-start sm:items-center gap-2 justify-center text-zinc-400">
+                <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0 mt-0.5 sm:mt-0" />
+                <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
                   Designed for restaurants, retail, and hospitality teams
                 </span>
               </div>
