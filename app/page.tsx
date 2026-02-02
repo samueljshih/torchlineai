@@ -969,12 +969,12 @@ export default function TorchlineLanding() {
                 ].map((step, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-5 backdrop-blur-sm"
+                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-5 backdrop-blur-sm"
                   >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-sm font-semibold text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-sm font-semibold text-white mt-0.5">
                       {index + 1}
                     </div>
-                    <p className="text-base text-zinc-300">{step.text}</p>
+                    <p className="text-base text-zinc-300 text-left flex-1">{step.text}</p>
                   </div>
                 ))}
               </div>
