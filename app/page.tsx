@@ -1019,13 +1019,13 @@ export default function TorchlineLanding() {
                 },
                 {
                   icon: LineChart,
-                  title: "Capital-Efficient Deployment",
+                  title: "Capital Efficient Deployment",
                   description:
                     "Software-first rollout using existing cameras for faster onboarding.",
                 },
                 {
                   icon: Users,
-                  title: "Operator-Built Insight",
+                  title: "Operator Built Insight",
                   description:
                     "Designed around real shift pressure and multi-unit consistency.",
                 },
