@@ -359,9 +359,9 @@ export default function TorchlineLanding() {
                   </div>
                 ))}
               </div>
-              <div className="pt-6 space-y-1 text-base sm:text-lg text-zinc-800 px-6 sm:px-0">
-                <p>Operators think cameras protect them.</p>
-                <p>They don't until video becomes operational proof.</p>
+              <div className="pt-6 space-y-2 px-6 sm:px-0">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900">Operators think cameras protect them.</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">They don't until video becomes operational proof.</p>
               </div>
             </motion.div>
             <motion.div
