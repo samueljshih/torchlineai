@@ -204,15 +204,15 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-3 sm:gap-4 text-sm sm:text-base text-zinc-300/90 max-w-5xl mx-auto"
+              className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-3 lg:gap-6 text-sm lg:text-[15px] text-zinc-300/90 px-4"
             >
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-orange-400 flex-shrink-0" />
-                <span className="text-center sm:text-left">Operator-built. Role-based access and retention controls included.</span>
+              <div className="flex items-center gap-2 justify-center">
+                <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0" />
+                <span className="text-center lg:text-left whitespace-nowrap">Operator-built. Role-based access and retention controls included.</span>
               </div>
-              <div className="flex items-center gap-2 justify-center sm:justify-start text-zinc-400">
-                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-orange-300 flex-shrink-0" />
-                <span className="text-center sm:text-left">Designed for restaurants, retail, and hospitality teams</span>
+              <div className="flex items-center gap-2 justify-center text-zinc-400">
+                <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0" />
+                <span className="text-center lg:text-left whitespace-nowrap">Designed for restaurants, retail, and hospitality teams</span>
               </div>
             </motion.div>
           </div>
