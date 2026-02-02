@@ -248,7 +248,7 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="max-w-3xl text-base sm:text-lg text-zinc-300"
+              className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
             >
               See how Torchline AI turns everyday camera feeds into clear operational signals for coaching, compliance, and multi-site oversight.
             </motion.p>
@@ -257,7 +257,7 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="max-w-3xl text-sm sm:text-base text-zinc-400"
+              className="max-w-3xl text-sm sm:text-base text-zinc-400 text-balance px-6 sm:px-4"
             >
               Most teams start with a few high-priority standards, then add more over time.
             </motion.p>
