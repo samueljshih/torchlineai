@@ -204,15 +204,16 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm sm:text-base text-zinc-300/90"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-3 sm:gap-4 text-sm sm:text-base text-zinc-300/90"
             >
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-orange-400" />
-                <span>Operator-built. Role-based access and retention controls included.</span>
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
+                <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-orange-400 flex-shrink-0" />
+                <span>Operator-built with role-based access</span>
               </div>
-              <div className="flex items-center gap-2 text-zinc-400">
-                <CheckCircle2 className="h-5 w-5 text-orange-300" />
-                <span>Designed for restaurants, retail, and hospitality teams</span>
+              <div className="hidden sm:block text-zinc-600">•</div>
+              <div className="flex items-center gap-2 justify-center sm:justify-start text-zinc-400">
+                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-orange-300 flex-shrink-0" />
+                <span>Built for restaurants, retail & hospitality</span>
               </div>
             </motion.div>
           </div>
