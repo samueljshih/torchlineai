@@ -667,7 +667,7 @@ export default function TorchlineLanding() {
                     description: (
                       <>
                         <span className="text-base block">Labor class actions are up <strong>+20.9%</strong> since 2020.</span>
-                        <span className="text-xs block mt-1">Documentation and timelines matter more than ever.</span>
+                        <span className="text-sm block mt-1">Documentation and timelines matter more than ever.</span>
                       </>
                     ),
                   },
