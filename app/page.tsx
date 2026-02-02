@@ -345,10 +345,10 @@ export default function TorchlineLanding() {
                     key={item.title}
                     className="flex items-start gap-3 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-[0_18px_32px_-20px_rgba(15,15,15,0.45)]"
                   >
-                    <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                      <item.icon className="h-5 w-5" />
+                    <div className="mt-1 flex h-10 w-10 min-h-[2.5rem] min-w-[2.5rem] flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white">
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 flex-1">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">
                         {item.title}
                       </p>
