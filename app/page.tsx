@@ -547,11 +547,6 @@ export default function TorchlineLanding() {
                     "Protect execution and operational standards across every shift.",
                 },
                 {
-                  icon: Store,
-                  title: "Convenience Stores",
-                  description: "Reduce shrinkage and improve accountability.",
-                },
-                {
                   icon: Coffee,
                   title: "Coffee & Beverage Chains",
                   description:
@@ -562,11 +557,6 @@ export default function TorchlineLanding() {
                   title: "Food Courts",
                   description:
                     "Monitor execution in high-volume environments.",
-                },
-                {
-                  icon: ShoppingBag,
-                  title: "Grocery Stores",
-                  description: "Improve operational oversight and safety.",
                 },
               ].map((item) => (
                 <motion.div
