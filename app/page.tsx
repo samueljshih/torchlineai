@@ -206,16 +206,7 @@ export default function TorchlineLanding() {
               <br />
               And Elevates
             </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-              className="text-xl sm:text-xl md:text-2xl text-zinc-200 max-w-3xl text-balance px-4 sm:px-4"
-            >
-              Torchline transforms existing camera systems into an operational
-              intelligence platform that helps operators protect profits, coach
-              teams, and improve execution across every location.
-            </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -310,7 +301,7 @@ export default function TorchlineLanding() {
               variants={staggerContainer}
               className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2"
             >
-              {["Protect profits.", "Coach teams.", "Improve execution."].map(
+              {["Protect Profits", "Coach Teams", "Improve Execution"].map(
                 (item) => (
                   <motion.span
                     key={item}
