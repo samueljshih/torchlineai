@@ -13,7 +13,6 @@ import {
   Building2,
   ShoppingBag,
   ShieldCheck,
-  Users,
   CheckCircle2,
   Camera,
   Video,
@@ -384,31 +383,13 @@ export default function TorchlineLanding() {
       {/* SECTION 3 — FOUNDER STORY */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-100">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="order-2 md:order-1 relative"
-            >
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-300 shadow-2xl bg-zinc-200 flex items-center justify-center">
-                <div className="text-center space-y-3 p-8">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-red-600 mx-auto flex items-center justify-center">
-                    <Users className="w-12 h-12 text-white" />
-                  </div>
-                  <p className="text-zinc-500 text-sm font-medium">
-                    Founder Photo
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="order-1 md:order-2 space-y-4 sm:space-y-6 text-center md:text-left"
+              className="space-y-4 sm:space-y-6 text-center"
             >
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
                 Our Story
@@ -464,7 +445,6 @@ export default function TorchlineLanding() {
                     &amp; Operator
                   </p>
                 </div>
-              </div>
             </motion.div>
           </div>
         </div>
