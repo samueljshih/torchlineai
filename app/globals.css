@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Updated color scheme for Torchline AI with torch-inspired amber-orange gradients */
   --background: oklch(0 0 0); /* Pure black */

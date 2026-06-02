@@ -1,34 +1,33 @@
 "use client";
 
 import type React from "react";
-
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Play,
   UtensilsCrossed,
   Coffee,
   Store,
   Building2,
   ShoppingBag,
-  Database,
   ShieldCheck,
-  LineChart,
   Users,
   CheckCircle2,
-  AlertTriangle,
-  TrendingDown,
-  Gavel,
   Camera,
-  Sparkles,
   Video,
-  BellRing,
-  FileText,
-  Settings,
-  Users2,
+  Clock,
+  ClipboardList,
+  Zap,
+  DollarSign,
+  Lock,
+  Eye,
+  Search,
+  ChevronDown,
+  MapPin,
+  X,
+  AlertTriangle,
 } from "lucide-react";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
@@ -52,9 +51,7 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
@@ -67,11 +64,50 @@ const staggerItem: Variants = {
   },
 };
 
+const faqItems = [
+  {
+    question: "Do I need new cameras?",
+    answer:
+      "No. Torchline is designed to work with most existing camera systems. No rip-and-replace, no costly hardware overhaul, and no disruption to daily operations.",
+  },
+  {
+    question: "How long does deployment take?",
+    answer:
+      "Most deployments are completed quickly with minimal disruption to daily operations. Simply connect your existing cameras and begin turning video into operational intelligence.",
+  },
+  {
+    question: "Can Torchline work across multiple locations?",
+    answer:
+      "Yes. Torchline is built for multi-unit operators and provides centralized visibility across every location from a single platform.",
+  },
+  {
+    question: "Does Torchline replace my security system?",
+    answer:
+      "No. Torchline is an operational intelligence platform that works alongside your existing security infrastructure.",
+  },
+  {
+    question: "What camera systems are supported?",
+    answer:
+      "Torchline is designed to work with most existing commercial camera systems. Contact us to verify compatibility with your specific setup.",
+  },
+  {
+    question: "Can Torchline monitor labor and compliance?",
+    answer:
+      "Yes. Torchline includes dedicated agents for labor accountability, SOP compliance, and operational standards across every shift.",
+  },
+  {
+    question: "How is data stored and protected?",
+    answer:
+      "Torchline includes role-based access controls and retention management. Data security and privacy are built into the platform.",
+  },
+];
+
 export default function TorchlineLanding() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,11 +133,11 @@ export default function TorchlineLanding() {
       } else {
         const data = await response.json().catch(() => null);
         setErrorMessage(
-          data?.error || "We couldn’t submit your email. Please try again."
+          data?.error || "We couldn't submit your email. Please try again."
         );
       }
     } catch (error) {
-      console.error("Waitlist submission failed", error);
+      console.error("Demo request submission failed", error);
       setErrorMessage("Something went wrong. Please try again in a moment.");
     } finally {
       setIsSubmitting(false);
@@ -134,11 +170,12 @@ export default function TorchlineLanding() {
             asChild
             className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-sm sm:text-base px-4 sm:px-6"
           >
-            <a href="#join-waitlist">Join Waitlist</a>
+            <a href="#book-demo">Book A Demo</a>
           </Button>
         </div>
       </nav>
 
+      {/* SECTION 1 — HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
         <div className="absolute inset-0">
           <Image
@@ -158,17 +195,12 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
-              Vision AI That
-              <br />
+              The AI Manager That{" "}
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Protects,
-                <br className="hidden sm:block" />
-                Coaches,
+                Never Calls In Sick.
               </span>
-              <br />
-              And Elevates
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -176,18 +208,9 @@ export default function TorchlineLanding() {
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
               className="text-lg sm:text-xl md:text-2xl text-zinc-200 max-w-3xl text-balance px-6 sm:px-4"
             >
-              Torchline AI adds operational intelligence to the cameras you
-              already have. Teams stay safe, consistent, and compliant without
-              new hardware or extra busywork.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-sm sm:text-base md:text-lg text-zinc-300 max-w-3xl text-balance px-6 sm:px-4 italic"
-            >
-              Torchline AI surfaces exceptions, organizes evidence, and delivers
-              coaching clips from the video you already capture.
+              Torchline transforms existing camera systems into an operational
+              intelligence platform that helps operators protect profits, coach
+              teams, and improve execution across every location.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -200,7 +223,15 @@ export default function TorchlineLanding() {
                 size="lg"
                 className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 shadow-[0_8px_30px_rgba(249,115,22,0.35)] transition-all"
               >
-                <a href="#join-waitlist">Join Waitlist</a>
+                <a href="#demo-video">See Torchline In Action</a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5 bg-transparent"
+              >
+                <a href="#book-demo">Book A Demo</a>
               </Button>
             </motion.div>
             <motion.div
@@ -225,9 +256,77 @@ export default function TorchlineLanding() {
             </motion.div>
           </div>
         </div>
+        <a
+          href="#demo-video"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-zinc-400 hover:text-orange-400 transition-colors"
+        >
+          <ChevronDown className="h-6 w-6 animate-bounce" />
+        </a>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-black relative overflow-hidden">
+      {/* SECTION 2 — THE BIG IDEA */}
+      <section className="py-20 sm:py-28 lg:py-36 relative overflow-hidden bg-black">
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.3),_transparent_65%)]" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-8 sm:space-y-10">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance"
+            >
+              Most Restaurants Already Have Cameras.
+            </motion.h2>
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"
+            >
+              Very Few Have Visibility.
+            </motion.h3>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="space-y-3 text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto"
+            >
+              <p>Cameras record what happened.</p>
+              <p>Torchline helps operators understand what matters.</p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2"
+            >
+              {["Protect profits.", "Coach teams.", "Improve execution."].map(
+                (item) => (
+                  <motion.span
+                    key={item}
+                    variants={staggerItem}
+                    className="px-5 py-2.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-300 text-base sm:text-lg font-medium"
+                  >
+                    {item}
+                  </motion.span>
+                )
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO */}
+      <section
+        id="demo-video"
+        className="py-16 sm:py-20 lg:py-24 bg-black relative overflow-hidden"
+      >
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(249,115,22,0.22),_transparent_60%)]" />
         </div>
@@ -249,7 +348,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white"
             >
-              Inside the Torchline AI Command Center
+              Inside the Torchline Command Center
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -258,19 +357,9 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
             >
-              See how Torchline AI turns everyday camera feeds into clear
+              See how Torchline turns everyday camera feeds into clear
               operational signals for coaching, compliance, and multi-site
               oversight.
-            </motion.p>
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="max-w-3xl text-sm sm:text-base text-zinc-400 text-balance px-6 sm:px-4"
-            >
-              Most teams start with a few high-priority standards, then add more
-              over time.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -292,230 +381,8 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
+      {/* SECTION 3 — FOUNDER STORY */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-100">
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="space-y-4 sm:space-y-6 text-center md:text-left"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900">
-                Invisible Risks Are{" "}
-                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Eating Margins
-                </span>
-              </h2>
-              <div className="space-y-3 sm:space-y-4 text-base sm:text-lg text-zinc-700">
-                <p className="text-balance px-6 sm:px-0">
-                  Even strong operators lose margin to what can't be verified
-                  mid-shift. Missed steps. Skipped breaks. Hygiene lapses.
-                  Preventable loss.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:gap-4 text-left">
-                {[
-                  {
-                    icon: Users2,
-                    title: "High Turnover",
-                    description: (
-                      <>
-                        U.S. restaurant turnover hit{" "}
-                        <strong>65.8% in 2024</strong>. Consistency breaks when
-                        teams rotate this fast.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: TrendingDown,
-                    title: "Operational Shrink",
-                    description: (
-                      <>
-                        Shrink averages <strong>1.6% of sales</strong>. That is{" "}
-                        <strong>$112B</strong> in one year across retail.
-                        Similar leakage shows up anywhere volume is high and
-                        oversight is thin.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: Gavel,
-                    title: "Compliance Exposure",
-                    description: (
-                      <>
-                        Back wages recovered by the U.S. Department of Labor
-                        topped <strong>$259M in FY2025</strong>. Wage-hour
-                        mistakes get enforced.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: Camera,
-                    title: "Fragmented Oversight",
-                    description: (
-                      <>
-                        <strong>71%</strong> report cameras are already on-site.
-                        But most systems still produce footage, not answers.
-                      </>
-                    ),
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="flex items-start gap-3 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-[0_18px_32px_-20px_rgba(15,15,15,0.45)]"
-                  >
-                    <div className="mt-1 flex h-10 w-10 min-h-[2.5rem] min-w-[2.5rem] flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
-                    </div>
-                    <div className="space-y-1 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">
-                        {item.title}
-                      </p>
-                      <p className="text-sm sm:text-base text-zinc-700/90">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="pt-6 space-y-2 px-6 sm:px-0">
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900">
-                  Operators think cameras protect them.
-                </p>
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  They don't until video becomes operational proof.
-                </p>
-              </div>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="relative"
-            >
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-300 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.01.31%20PM-aAAlzc6H8XbyAiPKrqusKxPSZD6XW4.png"
-                  alt="Food preparation line"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-center space-y-3 sm:space-y-4"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                AI That Works Like a Manager,{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Not a Monitor
-                </span>
-              </h2>
-              <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
-                Torchline AI turns your existing cameras into an intelligence
-                layer that surfaces exceptions, speeds up coaching, and
-                strengthens compliance. It does this without adding screens to
-                watch.
-              </p>
-              <p className="text-sm sm:text-base text-zinc-500 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
-                Examples include break adherence, handwashing frequency,
-                restricted-area access, opening and closing routines, and
-                register exceptions.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="grid gap-4 sm:gap-6 sm:grid-cols-3"
-            >
-              {[
-                {
-                  title: "Protect",
-                  tagline: "Exceptions Captured",
-                  description:
-                    "Automatic detection flags safety, hygiene, and labor-risk moments. Key events are time-stamped and organized for review.",
-                },
-                {
-                  title: "Coach",
-                  tagline: "Coaching in Seconds",
-                  description:
-                    "Auto-tagged clips make feedback fast. Onboarding becomes smoother. Standards are easier to reinforce.",
-                },
-                {
-                  title: "Elevate",
-                  tagline: "Patterns Across Locations",
-                  description:
-                    "Trend views show where execution drifts and where it wins. Leaders can standardize what works.",
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  variants={staggerItem}
-                  className="flex h-full"
-                >
-                  <div className="group relative flex min-h-full flex-1 flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/70 via-zinc-900/40 to-zinc-900/80 p-6 sm:p-8 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
-                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-base font-semibold text-white sm:h-12 sm:w-12">
-                        {index + 1}
-                      </div>
-                      <p className="text-base font-semibold uppercase tracking-[0.3em] text-zinc-200 sm:text-lg">
-                        {item.title}
-                      </p>
-                    </div>
-                    <div className="mt-5 space-y-3">
-                      <p className="text-2xl font-semibold text-white sm:text-3xl">
-                        {item.tagline}
-                      </p>
-                      <p className="text-sm text-zinc-400/90 sm:text-base">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="relative mt-8 sm:mt-12"
-            >
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.02.49%20PM-LqRDKIvKBE2n4gMiFuY3wl6BEmTk8m.png"
-                  alt="Frontline worker using Torchline AI on tablet"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 75vw, 100vw"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
             <motion.div
@@ -525,14 +392,15 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="order-2 md:order-1 relative"
             >
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-200 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c-restaurant-o4hfSLsa4tVbhVVduVunZuOaXszOUJ.png"
-                  alt="Restaurant protection"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                />
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-300 shadow-2xl bg-zinc-200 flex items-center justify-center">
+                <div className="text-center space-y-3 p-8">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-red-600 mx-auto flex items-center justify-center">
+                    <Users className="w-12 h-12 text-white" />
+                  </div>
+                  <p className="text-zinc-500 text-sm font-medium">
+                    Founder Photo
+                  </p>
+                </div>
               </div>
             </motion.div>
             <motion.div
@@ -542,22 +410,71 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="order-1 md:order-2 space-y-4 sm:space-y-6 text-center md:text-left"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Protect
-                </span>
-              </h2>
-              <p className="text-base sm:text-lg text-zinc-700 leading-relaxed text-balance px-6 sm:px-0">
-                Torchline AI detects and documents key safety, hygiene, and
-                labor-compliance events. It creates a time-stamped audit trail
-                for incident review and internal accountability.
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
+                Our Story
               </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
+                Built By A Restaurant Operator
+              </h2>
+              <div className="space-y-3 text-base sm:text-lg text-zinc-700 leading-relaxed">
+                <p>Torchline wasn&apos;t created in a Silicon Valley boardroom.</p>
+                <p>
+                  It was built by a restaurant operator who spent years managing
+                  labor, compliance, guest experience, training, and multi-unit
+                  operations firsthand.
+                </p>
+                <p>Like many operators, we had cameras.</p>
+                <p>But cameras only recorded what happened.</p>
+                <p>They didn&apos;t provide visibility.</p>
+                <p>Torchline was built to bridge that gap.</p>
+                <p>
+                  We created the platform we wished we had—one that helps
+                  operators gain visibility, improve accountability, coach teams,
+                  and protect profits across every location.
+                </p>
+                <p className="font-semibold text-zinc-900">
+                  Because cameras don&apos;t solve problems.
+                </p>
+                <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  Visibility does.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+                {[
+                  { stat: "5", label: "Concepts" },
+                  { stat: "9", label: "Locations Operated" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="px-5 py-3 rounded-xl border border-zinc-200 bg-white shadow-sm text-center"
+                  >
+                    <p className="text-3xl font-bold text-zinc-900">
+                      {item.stat}
+                    </p>
+                    <p className="text-xs text-zinc-500 uppercase tracking-wide">
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
+                <div className="px-5 py-3 rounded-xl border border-zinc-200 bg-white shadow-sm text-center flex flex-col justify-center">
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Restaurant Owner
+                  </p>
+                  <p className="text-xs text-zinc-500 uppercase tracking-wide">
+                    &amp; Operator
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
+      {/* SECTION 4 — NO NEW CAMERAS REQUIRED */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(249,115,22,0.2),_transparent_65%)]" />
+        </div>
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
             <motion.div
@@ -567,16 +484,41 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="space-y-4 sm:space-y-6 text-center md:text-left"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
+                Works With The Cameras{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Coach
+                  You Already Have
                 </span>
               </h2>
-              <p className="text-base sm:text-lg text-zinc-300 leading-relaxed text-balance px-6 sm:px-0">
-                Torchline AI turns real shift moments into ready-to-share
-                coaching clips. Managers reinforce SOPs with less effort and
-                more consistency.
-              </p>
+              <div className="space-y-3 text-base sm:text-lg text-zinc-300 leading-relaxed">
+                <p>
+                  Torchline is designed to work with most existing camera
+                  systems.
+                </p>
+                <p>No rip-and-replace.</p>
+                <p>No costly hardware overhaul.</p>
+                <p>No disruption to daily operations.</p>
+                <p>
+                  Simply connect your existing cameras and begin turning video
+                  into operational intelligence.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3 pt-4">
+                {[
+                  { icon: Camera, label: "Existing Camera Compatible" },
+                  { icon: Zap, label: "Fast Deployment" },
+                  { icon: MapPin, label: "Multi-Location Ready" },
+                  { icon: CheckCircle2, label: "Minimal IT Requirements" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/50 px-3 py-3"
+                  >
+                    <item.icon className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                    <span className="text-sm text-zinc-200">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -587,8 +529,8 @@ export default function TorchlineLanding() {
             >
               <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c-coach-aShvOlyFioCFyPDhtOCOV48hEw8hSG.png"
-                  alt="Professional chefs working together in kitchen"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.02.49%20PM-LqRDKIvKBE2n4gMiFuY3wl6BEmTk8m.png"
+                  alt="Torchline operational intelligence platform"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -599,145 +541,7 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-100">
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="order-2 md:order-1 relative"
-            >
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-300 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c-elevate-yz094Wu3Yh4qNvlf8cKa8cYxrMBbWj.png"
-                  alt="Performance analytics"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="order-1 md:order-2 space-y-4 sm:space-y-6 text-center md:text-left"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Elevate
-                </span>
-              </h2>
-              <p className="text-base sm:text-lg text-zinc-700 leading-relaxed text-balance px-6 sm:px-0">
-                Torchline AI surfaces patterns across shifts and stores. Leaders
-                spot drift early, replicate best practices, and improve
-                execution at scale.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/server-FO7O3vJaIVama2HNnYnYZ4kQfVIJEG.png"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8 sm:space-y-12">
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4"
-            >
-              The Market is{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Ready
-              </span>
-            </motion.h2>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="space-y-6 text-base sm:text-lg text-zinc-400"
-            >
-              <p className="text-lg sm:text-xl px-6 sm:px-4 text-balance">
-                The hardware is already there. The gap is turning video into
-                something teams can use.
-              </p>
-              <div className="grid gap-4 px-2 sm:grid-cols-2 sm:px-4 md:grid-cols-4">
-                {[
-                  {
-                    icon: Sparkles,
-                    stat: "280×",
-                    description: (
-                      <>
-                        AI inference costs dropped <strong>280-fold</strong>{" "}
-                        from Nov 2022 to Oct 2024. Real-time analysis is now far
-                        more practical.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: Camera,
-                    stat: "71%",
-                    description: (
-                      <>
-                        <strong>71%</strong> of operators have cameras already
-                        in place.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: Gavel,
-                    stat: "+20.9%",
-                    description: (
-                      <>
-                        Labor class actions are up <strong>+20.9%</strong> since
-                        2020. Documentation and timelines matter more than ever.
-                      </>
-                    ),
-                  },
-                  {
-                    icon: ShieldCheck,
-                    stat: "Claims",
-                    description:
-                      "Better documentation speeds investigations and reduces ambiguity when incidents happen.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.stat}
-                    className="group h-full rounded-2xl border border-white/10 bg-zinc-900/55 p-5 transition-all hover:border-orange-400/60 hover:shadow-[0_20px_55px_-30px_rgba(249,115,22,0.85)]"
-                  >
-                    <div className="flex items-center gap-3 text-orange-300">
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
-                      <span className="text-3xl font-semibold text-white">
-                        {item.stat}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm text-zinc-300/90 text-left">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+      {/* SECTION 5 — WHO WE SERVE */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
@@ -748,10 +552,13 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-center space-y-3 sm:space-y-4"
             >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
+                Industries We Serve
+              </p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
-                Built For{" "}
+                Purpose-Built For{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  The Frontline
+                  High-Volume Operations
                 </span>
               </h2>
             </motion.div>
@@ -766,39 +573,43 @@ export default function TorchlineLanding() {
               {[
                 {
                   icon: UtensilsCrossed,
-                  title: "Quick Service & Fast Casual",
+                  title: "QSR",
                   description:
-                    "SOP consistency and safety at scale across busy kitchens.",
+                    "Reduce labor leakage, improve speed of service, and maintain consistency.",
+                },
+                {
+                  icon: UtensilsCrossed,
+                  title: "Fast Casual",
+                  description:
+                    "Protect execution and operational standards across every shift.",
                 },
                 {
                   icon: Store,
                   title: "Convenience Stores",
-                  description:
-                    "24/7 visibility with early signals for loss and operational gaps.",
+                  description: "Reduce shrinkage and improve accountability.",
                 },
                 {
                   icon: Coffee,
-                  title: "Coffee Chains",
+                  title: "Coffee & Beverage Chains",
                   description:
-                    "Queue flow, beverage standards, and service consistency.",
-                },
-                {
-                  icon: Building2,
-                  title: "Hotels & Grocery",
-                  description:
-                    "Food safety compliance and brand protection across back-of-house.",
+                    "Improve throughput during peak operating hours.",
                 },
                 {
                   icon: ShoppingBag,
-                  title: "Retail Stores & Malls",
+                  title: "Food Courts",
                   description:
-                    "Loss control, standards verification, and guest experience.",
+                    "Monitor execution in high-volume environments.",
                 },
                 {
-                  icon: Users,
-                  title: "Corporate Offices & HQ",
+                  icon: ShoppingBag,
+                  title: "Grocery Stores",
+                  description: "Improve operational oversight and safety.",
+                },
+                {
+                  icon: Building2,
+                  title: "Hotels",
                   description:
-                    "Multi-site visibility for ops leaders, training teams, and audits.",
+                    "Increase visibility across multiple departments and facilities.",
                 },
               ].map((item) => (
                 <motion.div
@@ -814,7 +625,7 @@ export default function TorchlineLanding() {
                       <h3 className="text-base font-semibold text-zinc-900 sm:text-lg">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-zinc-600/90 sm:text-sm">
+                      <p className="text-sm text-zinc-600/90">
                         {item.description}
                       </p>
                     </div>
@@ -822,21 +633,306 @@ export default function TorchlineLanding() {
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </div>
+      </section>
 
+      {/* SECTION 6 — AI OPERATIONAL AGENTS */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="relative mt-8 sm:mt-12"
+              className="text-center space-y-3 sm:space-y-4"
             >
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-lg overflow-hidden border border-zinc-200 shadow-2xl">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+                Always-On{" "}
+                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
+                  AI Operational Agents
+                </span>
+              </h2>
+              <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
+                Specialized AI agents continuously monitor operations and surface
+                the moments that matter most.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {[
+                {
+                  icon: Clock,
+                  title: "Labor Agent",
+                  monitors: [
+                    "Attendance",
+                    "Punctuality",
+                    "Shift execution",
+                    "Labor accountability",
+                  ],
+                  value:
+                    "Reduce time theft, buddy punching, and payroll disputes.",
+                },
+                {
+                  icon: ClipboardList,
+                  title: "Compliance Agent",
+                  monitors: [
+                    "SOP execution",
+                    "Uniform compliance",
+                    "PPE compliance",
+                    "Operational procedures",
+                  ],
+                  value: "Improve consistency and reduce compliance risk.",
+                },
+                {
+                  icon: Zap,
+                  title: "Service Agent",
+                  monitors: [
+                    "Throughput",
+                    "Queue conditions",
+                    "Drive-thru performance",
+                    "Service bottlenecks",
+                  ],
+                  value: "Improve guest experience and speed of service.",
+                },
+                {
+                  icon: DollarSign,
+                  title: "Shrink Agent",
+                  monitors: [
+                    "Refunds",
+                    "Suspicious activity",
+                    "Register behavior",
+                    "Unauthorized access",
+                  ],
+                  value: "Reduce shrinkage and operational fraud.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Safety Agent",
+                  monitors: [
+                    "Slips and falls",
+                    "Hazards",
+                    "Smoke",
+                    "Fire",
+                    "Unsafe behavior",
+                  ],
+                  value: "Reduce incidents and liability exposure.",
+                },
+                {
+                  icon: Lock,
+                  title: "Security Agent",
+                  monitors: [
+                    "Loitering",
+                    "Intrusion",
+                    "Restricted areas",
+                    "Perimeter activity",
+                  ],
+                  value: "Improve security awareness and prevention.",
+                },
+              ].map((agent) => (
+                <motion.div
+                  key={agent.title}
+                  variants={staggerItem}
+                  className="h-full"
+                >
+                  <div className="group relative flex min-h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/70 via-zinc-900/40 to-zinc-900/80 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
+                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
+                        <agent.icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white">
+                        {agent.title}
+                      </h3>
+                    </div>
+                    <div className="mb-4 flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500 mb-2">
+                        Monitors
+                      </p>
+                      <ul className="space-y-1">
+                        {agent.monitors.map((m) => (
+                          <li
+                            key={m}
+                            className="flex items-center gap-2 text-sm text-zinc-300"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-orange-400 flex-shrink-0" />
+                            {m}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="pt-4 border-t border-white/10">
+                      <p className="text-sm text-orange-300">{agent.value}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7 — WHAT TORCHLINE MONITORS */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center space-y-3 sm:space-y-4"
+            >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+                Platform Coverage
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+                Operational Visibility{" "}
+                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
+                  Across Every Location
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid gap-4 sm:grid-cols-2"
+            >
+              {[
+                {
+                  label: "Labor & Attendance",
+                  items: [
+                    "Employee arrivals",
+                    "Clock-in verification",
+                    "Punctuality",
+                    "Shift execution",
+                  ],
+                },
+                {
+                  label: "Compliance & Service",
+                  items: [
+                    "Uniform compliance",
+                    "PPE compliance",
+                    "SOP adherence",
+                    "Queue conditions",
+                    "Drive-thru speed",
+                  ],
+                },
+                {
+                  label: "Loss & Register",
+                  items: [
+                    "Register activity",
+                    "Refund events",
+                    "Delivery verification",
+                    "Restricted area access",
+                    "Unauthorized entry",
+                  ],
+                },
+                {
+                  label: "Safety & Security",
+                  items: [
+                    "Safety hazards",
+                    "Slip and fall incidents",
+                    "Loitering",
+                    "Perimeter activity",
+                  ],
+                },
+              ].map((group) => (
+                <motion.div key={group.label} variants={staggerItem}>
+                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400 mb-3">
+                      {group.label}
+                    </p>
+                    <ul className="space-y-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex items-center gap-2.5">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-orange-400/70 flex-shrink-0" />
+                          <span className="text-sm text-zinc-300">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8 — SEARCH VIDEO LIKE GOOGLE */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-100">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="space-y-5 sm:space-y-6 text-center md:text-left"
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
+                Find Any Moment{" "}
+                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  In Seconds
+                </span>
+              </h2>
+              <div className="space-y-2 text-base sm:text-lg text-zinc-700">
+                <p>Stop reviewing hours of footage.</p>
+                <p>Search video using natural language.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                  Example Searches
+                </p>
+                <div className="space-y-2">
+                  {[
+                    "Employee wearing red shirt",
+                    "Person entered back door",
+                    "Customer slipped near counter",
+                    "Cash drawer opened after close",
+                    "Employee arrived late",
+                    "Unauthorized access to office",
+                  ].map((ex) => (
+                    <div
+                      key={ex}
+                      className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 shadow-sm"
+                    >
+                      <Search className="h-3.5 w-3.5 text-orange-500 flex-shrink-0" />
+                      <span className="text-sm text-zinc-700 font-mono">
+                        {ex}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <p className="text-lg sm:text-xl font-semibold text-zinc-900 pt-1">
+                The moments that matter, surfaced instantly.
+              </p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="relative"
+            >
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-200 shadow-2xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/grocery-vvGsS5lqXDg4KFjam0EdQxreXYwk7k.png"
-                  alt="Frontline operations"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.01.31%20PM-aAAlzc6H8XbyAiPKrqusKxPSZD6XW4.png"
+                  alt="Video search interface"
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 75vw, 100vw"
+                  sizes="(min-width: 768px) 50vw, 100vw"
                 />
               </div>
             </motion.div>
@@ -844,55 +940,71 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
+      {/* SECTION 9 — WHY OPERATORS BUY TORCHLINE */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 text-center">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="space-y-3 sm:space-y-4"
+              className="text-center space-y-3 sm:space-y-4"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-                The Torchline AI System
-              </h2>
-              <p className="text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4">
-                Torchline AI turns video into daily oversight. Exceptions,
-                evidence, and coaching stay organized for every shift.
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
+                Why Torchline
               </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
+                Built For{" "}
+                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  Operational Results
+                </span>
+              </h2>
             </motion.div>
+
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid gap-4 text-left sm:grid-cols-2"
+              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
             >
               {[
                 {
+                  icon: Clock,
+                  title: "Labor Accountability",
+                  description:
+                    "Reduce payroll leakage and attendance disputes.",
+                },
+                {
+                  icon: ClipboardList,
+                  title: "SOP Compliance",
+                  description:
+                    "Verify operational standards across every shift.",
+                },
+                {
+                  icon: Eye,
+                  title: "Loss Prevention",
+                  description:
+                    "Identify suspicious behavior before losses escalate.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Liability Protection",
+                  description:
+                    "Maintain searchable audit trails and incident records.",
+                },
+                {
                   icon: Video,
-                  title: "Live Video + Smart Overlays",
+                  title: "Faster Coaching",
                   description:
-                    "Real-time context layered on top of the feeds you already trust.",
+                    "Turn operational moments into teachable opportunities.",
                 },
                 {
-                  icon: BellRing,
-                  title: "AI Alerts",
+                  icon: MapPin,
+                  title: "Multi-Unit Visibility",
                   description:
-                    "Compliance, safety, and performance signals before incidents escalate.",
-                },
-                {
-                  icon: FileText,
-                  title: "Shift Scorecards",
-                  description:
-                    "Daily summaries ready for coaching and cross-shift handoffs.",
-                },
-                {
-                  icon: Settings,
-                  title: "Admin Panel",
-                  description:
-                    "Users, training clips, and audit logs. Centralized and audit-ready.",
+                    "See what's happening without being everywhere.",
                 },
               ].map((item) => (
                 <motion.div
@@ -900,19 +1012,125 @@ export default function TorchlineLanding() {
                   variants={staggerItem}
                   className="h-full"
                 >
-                  <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-zinc-800/60 p-6 backdrop-blur-xl transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-32px_rgba(249,115,22,0.7)]">
-                    <div className="flex items-center text-orange-300">
+                  <div className="flex h-full items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:-translate-y-1 hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
                       <item.icon className="h-6 w-6" />
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold text-white sm:text-xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-zinc-300/90 sm:text-base">
-                      {item.description}
-                    </p>
+                    <div className="space-y-1 text-left">
+                      <h3 className="text-base font-semibold text-zinc-900 sm:text-lg">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-zinc-600/90">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10 — USE CASES */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center space-y-3 sm:space-y-4"
+            >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+                Real Scenarios
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+                Real Operational Problems.{" "}
+                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
+                  Real-Time Visibility.
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {[
+                {
+                  scenario: "Employee Didn't Clock In",
+                  resolution: "AI verifies arrival and attendance.",
+                },
+                {
+                  scenario: "Guest Slip & Fall",
+                  resolution: "Locate footage immediately.",
+                },
+                {
+                  scenario: "Refund Investigation",
+                  resolution: "Review suspicious transactions instantly.",
+                },
+                {
+                  scenario: "Drive-Thru Bottleneck",
+                  resolution: "Identify throughput issues in real time.",
+                },
+                {
+                  scenario: "SOP Violation",
+                  resolution:
+                    "Receive alerts when procedures aren't followed.",
+                },
+                {
+                  scenario: "Unauthorized Entry",
+                  resolution: "Detect access to restricted areas.",
+                },
+                {
+                  scenario: "Delivery Verification",
+                  resolution:
+                    "Confirm orders and deliveries with video evidence.",
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.scenario}
+                  variants={staggerItem}
+                  className="h-full"
+                >
+                  <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-zinc-900/40 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
+                    <p className="text-base font-semibold text-white mb-2">
+                      {item.scenario}
+                    </p>
+                    <p className="text-sm text-orange-300">{item.resolution}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 11 — COMPETITIVE COMPARISON */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto space-y-12 sm:space-y-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center space-y-3 sm:space-y-4"
+            >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+                How We Compare
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+                Cameras Record.{" "}
+                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
+                  Torchline Understands.
+                </span>
+              </h2>
             </motion.div>
 
             <motion.div
@@ -920,49 +1138,58 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="mt-12 sm:mt-16"
+              className="rounded-3xl border border-white/10 overflow-hidden"
             >
-              <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">
-                How It Works
-              </h3>
-              <div className="max-w-3xl mx-auto space-y-3">
-                {[
-                  {
-                    text: "Connect your existing cameras",
-                  },
-                  {
-                    text: "Torchline AI detects exceptions and key events",
-                  },
-                  {
-                    text: "Managers review clips and timelines",
-                  },
-                  {
-                    text: "Coaching happens in minutes, not meetings",
-                  },
-                  {
-                    text: "Trends roll up across shifts and locations",
-                  },
-                ].map((step, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-5 backdrop-blur-sm"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-sm font-semibold text-white">
-                      {index + 1}
-                    </div>
-                    <p className="text-base text-zinc-300 text-left flex-1 leading-relaxed">
-                      {step.text}
-                    </p>
-                  </div>
-                ))}
+              <div className="grid grid-cols-[1fr_auto_1fr] bg-zinc-800/80 px-6 py-4 border-b border-white/10 items-center">
+                <div className="text-center text-sm font-semibold text-zinc-400 uppercase tracking-wider">
+                  Traditional Cameras
+                </div>
+                <div className="flex items-center justify-center px-4">
+                  <span className="text-xs font-bold text-zinc-500 bg-zinc-700/60 border border-white/10 rounded-full px-2.5 py-1 tracking-widest">
+                    VS
+                  </span>
+                </div>
+                <div className="text-center text-sm font-semibold text-orange-400 uppercase tracking-wider">
+                  Torchline
+                </div>
               </div>
+              {[
+                ["Records footage", "Understands activity"],
+                ["Reactive", "Proactive"],
+                ["Manual review required", "Surfaces exceptions automatically"],
+                ["Security focused", "Operations focused"],
+                ["Hours of footage", "Actionable insights"],
+                ["Limited visibility", "Operational intelligence"],
+              ].map(([left, right], i) => (
+                <div
+                  key={left}
+                  className={`grid grid-cols-[1fr_auto_1fr] px-6 py-4 border-t border-white/10 items-center ${
+                    i % 2 === 0 ? "bg-zinc-900/30" : "bg-zinc-900/10"
+                  }`}
+                >
+                  <div className="flex items-center justify-center gap-2 px-2">
+                    <X className="h-3.5 w-3.5 text-red-500/60 flex-shrink-0" />
+                    <span className="text-sm text-zinc-400 text-center">
+                      {left}
+                    </span>
+                  </div>
+                  <div className="w-px h-6 bg-white/10 mx-4" />
+                  <div className="flex items-center justify-center gap-2 px-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-orange-400 flex-shrink-0" />
+                    <span className="text-sm text-white font-medium text-center">
+                      {right}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* SECTION 12 — WHY NOW */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-20">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/last-GUG5TRbJeDQbA38zYRs7pfy2S3OtIz.png"
             alt=""
@@ -973,7 +1200,7 @@ export default function TorchlineLanding() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black" />
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+          <div className="max-w-5xl mx-auto space-y-12 sm:space-y-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -981,20 +1208,15 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-center space-y-3 sm:space-y-4"
             >
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
-                  <div className="w-4 h-5 sm:w-5 sm:h-6 border-2 border-white rounded-sm" />
-                </div>
-              </div>
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+                The Opportunity
+              </p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Our Edge{" "}
+                Restaurant Operations Are{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Compounds Over Time
+                  More Complex Than Ever
                 </span>
               </h2>
-              <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
-                Every shift makes Torchline smarter and harder to replace.
-              </p>
             </motion.div>
 
             <motion.div
@@ -1002,51 +1224,83 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid gap-6 sm:grid-cols-2"
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
             >
               {[
-                {
-                  icon: Database,
-                  title: "Proprietary Dataset",
-                  description:
-                    "Torchline AI builds a reference library of real workflows and exceptions. Performance improves as coverage expands.",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Audit Trail Foundation",
-                  description:
-                    "Time-stamped logs and supporting clips for incident review and compliance questions.",
-                },
-                {
-                  icon: LineChart,
-                  title: "Capital Efficient Deployment",
-                  description:
-                    "Software-first rollout using existing cameras for faster onboarding.",
-                },
-                {
-                  icon: Users,
-                  title: "Operator Built Insight",
-                  description:
-                    "Designed around real shift pressure and multi-unit consistency.",
-                },
-              ].map((item) => (
-                <motion.div
-                  key={item.title}
-                  variants={staggerItem}
-                  className="h-full"
-                >
-                  <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-zinc-900/40 p-6 sm:p-8 transition-all hover:border-orange-400/60 hover:shadow-[0_24px_60px_-35px_rgba(249,115,22,0.75)]">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white sm:h-14 sm:w-14">
-                        <item.icon className="h-6 w-6 sm:h-7 sm:w-7" />
+                "Rising labor costs",
+                "Labor shortages",
+                "Increased compliance requirements",
+                "Multi-unit management challenges",
+                "Shrinkage and fraud",
+                "Growing guest expectations",
+              ].map((challenge) => (
+                <motion.div key={challenge} variants={staggerItem}>
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/40 px-5 py-4">
+                    <AlertTriangle className="h-4 w-4 text-orange-500/70 flex-shrink-0" />
+                    <span className="text-base text-zinc-200">{challenge}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto"
+            >
+              Torchline helps operators gain visibility without adding management
+              overhead.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 14 — FAQ */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-3xl mx-auto space-y-10 sm:space-y-14">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center"
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+                Frequently Asked Questions
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="space-y-3"
+            >
+              {faqItems.map((item, i) => (
+                <motion.div key={i} variants={staggerItem}>
+                  <div className="rounded-2xl border border-white/10 bg-zinc-800/40 overflow-hidden">
+                    <button
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      className="w-full flex items-center justify-between px-6 py-5 text-left"
+                    >
+                      <span className="text-base sm:text-lg font-medium text-white pr-4">
+                        {item.question}
+                      </span>
+                      <ChevronDown
+                        className={`h-5 w-5 text-orange-400 flex-shrink-0 transition-transform duration-200 ${
+                          openFaq === i ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openFaq === i && (
+                      <div className="px-6 pb-5 pt-1 text-sm sm:text-base text-zinc-300 leading-relaxed border-t border-white/10">
+                        <div className="pt-4">{item.answer}</div>
                       </div>
-                    </div>
-                    <h3 className="mt-5 text-xl font-semibold text-white sm:text-2xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-zinc-400/95 sm:text-base">
-                      {item.description}
-                    </p>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -1055,8 +1309,9 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
+      {/* FINAL CTA */}
       <section
-        id="join-waitlist"
+        id="book-demo"
         className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-black via-zinc-900 to-orange-950/20"
       >
         <div className="absolute inset-0 opacity-30">
@@ -1071,14 +1326,15 @@ export default function TorchlineLanding() {
             className="max-w-2xl mx-auto text-center space-y-6 sm:space-y-8"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-              Join the{" "}
+              See What Your Cameras{" "}
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Torchline AI Beta
+                Are Missing
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-zinc-400 px-6 sm:px-4 text-balance">
-              Be first to access beta availability, product updates, and new
-              capabilities.
+              Torchline helps operators protect profits, coach teams, and improve
+              execution by transforming existing cameras into an always-on
+              operational intelligence platform.
             </p>
 
             <div className="mx-auto max-w-md px-4">
@@ -1086,7 +1342,7 @@ export default function TorchlineLanding() {
                 onSubmit={handleSubmit}
                 className="space-y-5 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_65px_-40px_rgba(249,115,22,0.8)] backdrop-blur-xl"
               >
-                <input type="hidden" name="form" value="torchline-waitlist" />
+                <input type="hidden" name="form" value="torchline-demo" />
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <Input
                     type="email"
@@ -1104,7 +1360,7 @@ export default function TorchlineLanding() {
                     disabled={isSubmitting}
                     className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 px-8 py-4 text-lg text-white border-0 whitespace-nowrap shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
                   >
-                    {isSubmitting ? "Submitting..." : "Join Waitlist"}
+                    {isSubmitting ? "Submitting..." : "Schedule A Demo"}
                   </Button>
                 </div>
                 {errorMessage && (
@@ -1114,15 +1370,24 @@ export default function TorchlineLanding() {
                 )}
                 {isSubmitted && (
                   <p className="text-sm text-green-500 animate-in fade-in">
-                    Thanks! We'll be in touch soon.
+                    Thanks! We&apos;ll be in touch soon.
                   </p>
                 )}
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <ShieldCheck className="h-4 w-4 text-orange-300" />
-                  <span>No spam. Just product updates.</span>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2 text-xs text-zinc-400">
+                    <ShieldCheck className="h-4 w-4 text-orange-300" />
+                    <span>No spam. Just product updates.</span>
+                  </div>
+                  <p className="text-xs text-zinc-500 pl-6">
+                    We&apos;ll reach out within 1 business day to schedule a 20-minute walkthrough.
+                  </p>
                 </div>
               </form>
             </div>
+
+            <p className="text-sm text-zinc-500 pt-2">
+              Built by operators. Powered by Vision AI.
+            </p>
           </motion.div>
         </div>
       </section>
@@ -1141,7 +1406,7 @@ export default function TorchlineLanding() {
               <span
                 className={`font-semibold tracking-tight ${montserrat.className}`}
               >
-                © 2025 Torchline AI
+                © 2026 Torchline AI
               </span>
             </div>
             <div className="flex gap-4 sm:gap-6">
