@@ -87,11 +87,6 @@ const faqItems = [
       "Torchline is designed to work with most existing commercial camera systems. Contact us to verify compatibility with your specific setup.",
   },
   {
-    question: "Can Torchline monitor labor and compliance?",
-    answer:
-      "Yes. Torchline includes dedicated agents for labor accountability, SOP compliance, and operational standards across every shift.",
-  },
-  {
     question: "How is data stored and protected?",
     answer:
       "Torchline includes role-based access controls and retention management. Data security and privacy are built into the platform.",
@@ -649,13 +644,13 @@ export default function TorchlineLanding() {
                 },
               ].map((group) => (
                 <motion.div key={group.label} variants={staggerItem}>
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5 text-center">
+                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400 mb-3">
                       {group.label}
                     </p>
                     <ul className="space-y-2">
                       {group.items.map((item) => (
-                        <li key={item} className="flex items-center justify-center gap-2.5">
+                        <li key={item} className="flex items-center gap-2.5">
                           <CheckCircle2 className="h-3.5 w-3.5 text-orange-400/70 flex-shrink-0" />
                           <span className="text-sm text-zinc-300">{item}</span>
                         </li>
