@@ -554,9 +554,15 @@ export default function TorchlineLanding() {
                 },
                 {
                   icon: ShoppingBag,
-                  title: "Food Courts",
+                  title: "Full Service Restaurants",
                   description:
-                    "Monitor execution in high-volume environments.",
+                    "Improve labor accountability, guest experience, and operational consistency.",
+                },
+                {
+                  icon: Store,
+                  title: "Convenience Stores",
+                  description:
+                    "Reduce shrinkage, improve accountability, and monitor high-risk operational activity.",
                 },
               ].map((item) => (
                 <motion.div
