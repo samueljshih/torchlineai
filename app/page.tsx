@@ -194,7 +194,7 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
               Vision AI That
               <br />
@@ -269,7 +269,7 @@ export default function TorchlineLanding() {
       </section>
 
       {/* SECTION 2 — THE BIG IDEA */}
-      <section className="py-20 sm:py-28 lg:py-36 relative overflow-hidden bg-black">
+      <section className="py-14 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.3),_transparent_65%)]" />
         </div>
@@ -298,7 +298,7 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="space-y-3 text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto"
+              className="space-y-3 text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto"
             >
               <p>Cameras record what happened.</p>
               <p>Torchline helps operators understand what matters.</p>
@@ -350,7 +350,7 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white"
+              className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-white"
             >
               Inside the Torchline Command Center
             </motion.h2>
@@ -399,7 +399,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
                 Our Story
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
                 Built By A Restaurant Operator
               </h2>
               <div className="space-y-3 text-base sm:text-lg text-zinc-700 leading-relaxed">
@@ -425,7 +425,7 @@ export default function TorchlineLanding() {
                   Visibility does.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+              <div className="flex flex-wrap gap-4 justify-center pt-2">
                 {[
                   { stat: "5", label: "Concepts" },
                   { stat: "9", label: "Locations Operated" },
@@ -470,7 +470,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="space-y-4 sm:space-y-6 text-center md:text-left"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
                 Works With The Cameras{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   You Already Have
@@ -541,7 +541,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
                 Industries We Serve
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
                 Purpose Built For{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
                   High Volume Operations
@@ -628,7 +628,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-center space-y-3 sm:space-y-4"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
                 Always-On{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   AI Operational Agents
@@ -773,7 +773,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
                 Platform Coverage
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
                 Operational Visibility{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   Across Every Location
@@ -860,7 +860,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="space-y-5 sm:space-y-6 text-center md:text-left"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
                 Find Any Moment{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
                   In Seconds
@@ -934,7 +934,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
                 Why Torchline
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
                 Built For{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
                   Operational Results
@@ -1026,7 +1026,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
                 Real Scenarios
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
                 Real Operational Problems.{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   Real-Time Visibility.
@@ -1105,7 +1105,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
                 How We Compare
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
                 Cameras Record.{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   Torchline Understands.
@@ -1191,7 +1191,7 @@ export default function TorchlineLanding() {
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
                 The Opportunity
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
                 Restaurant Operations Are{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                   More Complex Than Ever
@@ -1248,7 +1248,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-center"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
                 Frequently Asked Questions
               </h2>
             </motion.div>
@@ -1305,7 +1305,7 @@ export default function TorchlineLanding() {
             variants={fadeInUp}
             className="max-w-2xl mx-auto text-center space-y-6 sm:space-y-8"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
               See What Your Cameras{" "}
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
                 Are Missing
