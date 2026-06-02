@@ -194,18 +194,23 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
-              The AI Manager That{" "}
+              Vision AI That
+              <br />
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Never Calls In Sick.
+                Protects,
+                <br className="hidden sm:block" />
+                Coaches,
               </span>
+              <br />
+              And Elevates
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-              className="text-lg sm:text-xl md:text-2xl text-zinc-200 max-w-3xl text-balance px-6 sm:px-4"
+              className="text-xl sm:text-xl md:text-2xl text-zinc-200 max-w-3xl text-balance px-4 sm:px-4"
             >
               Torchline transforms existing camera systems into an operational
               intelligence platform that helps operators protect profits, coach
@@ -239,14 +244,14 @@ export default function TorchlineLanding() {
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
               className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-3 lg:gap-6 text-sm lg:text-[15px] text-zinc-300/90 px-4"
             >
-              <div className="flex items-start sm:items-center gap-2 justify-center">
+              <div className="flex items-start sm:items-center gap-1.5 justify-center">
                 <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0 mt-0.5 sm:mt-0" />
                 <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
-                  Operator-built. Role-based access and retention controls
-                  included.
+                  Operator built — Role-based access and retention controls
+                  included
                 </span>
               </div>
-              <div className="flex items-start sm:items-center gap-2 justify-center text-zinc-400">
+              <div className="flex items-start sm:items-center gap-1.5 justify-center text-zinc-400">
                 <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0 mt-0.5 sm:mt-0" />
                 <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
                   Designed for restaurants, retail, and hospitality teams
@@ -275,7 +280,7 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance"
             >
               Most Restaurants Already Have Cameras.
             </motion.h2>
@@ -409,7 +414,7 @@ export default function TorchlineLanding() {
                 <p>They didn&apos;t provide visibility.</p>
                 <p>Torchline was built to bridge that gap.</p>
                 <p>
-                  We created the platform we wished we had—one that helps
+                  We created the platform we wished we had, one that helps
                   operators gain visibility, improve accountability, coach teams,
                   and protect profits across every location.
                 </p>
@@ -445,6 +450,7 @@ export default function TorchlineLanding() {
                     &amp; Operator
                   </p>
                 </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -536,9 +542,9 @@ export default function TorchlineLanding() {
                 Industries We Serve
               </p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
-                Purpose-Built For{" "}
+                Purpose Built For{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  High-Volume Operations
+                  High Volume Operations
                 </span>
               </h2>
             </motion.div>
@@ -584,12 +590,6 @@ export default function TorchlineLanding() {
                   icon: ShoppingBag,
                   title: "Grocery Stores",
                   description: "Improve operational oversight and safety.",
-                },
-                {
-                  icon: Building2,
-                  title: "Hotels",
-                  description:
-                    "Increase visibility across multiple departments and facilities.",
                 },
               ].map((item) => (
                 <motion.div
@@ -1120,16 +1120,16 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="rounded-3xl border border-white/10 overflow-hidden"
             >
-              <div className="grid grid-cols-[1fr_auto_1fr] bg-zinc-800/80 px-6 py-4 border-b border-white/10 items-center">
-                <div className="text-center text-sm font-semibold text-zinc-400 uppercase tracking-wider">
+              <div className="grid grid-cols-[1fr_auto_1fr] bg-zinc-800/80 px-3 sm:px-6 py-4 border-b border-white/10 items-center">
+                <div className="text-center text-xs sm:text-sm font-semibold text-zinc-400 uppercase tracking-wider">
                   Traditional Cameras
                 </div>
-                <div className="flex items-center justify-center px-4">
-                  <span className="text-xs font-bold text-zinc-500 bg-zinc-700/60 border border-white/10 rounded-full px-2.5 py-1 tracking-widest">
+                <div className="flex items-center justify-center px-2 sm:px-4">
+                  <span className="text-xs font-bold text-zinc-500 bg-zinc-700/60 border border-white/10 rounded-full px-2 sm:px-2.5 py-1 tracking-widest">
                     VS
                   </span>
                 </div>
-                <div className="text-center text-sm font-semibold text-orange-400 uppercase tracking-wider">
+                <div className="text-center text-xs sm:text-sm font-semibold text-orange-400 uppercase tracking-wider">
                   Torchline
                 </div>
               </div>
@@ -1143,20 +1143,20 @@ export default function TorchlineLanding() {
               ].map(([left, right], i) => (
                 <div
                   key={left}
-                  className={`grid grid-cols-[1fr_auto_1fr] px-6 py-4 border-t border-white/10 items-center ${
+                  className={`grid grid-cols-[1fr_auto_1fr] px-3 sm:px-6 py-3 sm:py-4 border-t border-white/10 items-center ${
                     i % 2 === 0 ? "bg-zinc-900/30" : "bg-zinc-900/10"
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-2 px-2">
-                    <X className="h-3.5 w-3.5 text-red-500/60 flex-shrink-0" />
-                    <span className="text-sm text-zinc-400 text-center">
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-2">
+                    <X className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-red-500/60 flex-shrink-0" />
+                    <span className="text-xs sm:text-sm text-zinc-400 text-center">
                       {left}
                     </span>
                   </div>
-                  <div className="w-px h-6 bg-white/10 mx-4" />
-                  <div className="flex items-center justify-center gap-2 px-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-orange-400 flex-shrink-0" />
-                    <span className="text-sm text-white font-medium text-center">
+                  <div className="w-px h-6 bg-white/10 mx-2 sm:mx-4" />
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-2">
+                    <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-orange-400 flex-shrink-0" />
+                    <span className="text-xs sm:text-sm text-white font-medium text-center">
                       {right}
                     </span>
                   </div>
