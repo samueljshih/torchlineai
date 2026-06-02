@@ -3,14 +3,13 @@
 import type React from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   UtensilsCrossed,
   Coffee,
   Store,
-  Building2,
   ShoppingBag,
   ShieldCheck,
   CheckCircle2,
@@ -99,6 +98,16 @@ export default function TorchlineLanding() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -137,6 +146,10 @@ export default function TorchlineLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <div
+        className="fixed top-0 left-0 z-[60] h-[2px] bg-gradient-to-r from-orange-500 to-red-600 transition-[width] duration-75 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
@@ -225,17 +238,17 @@ export default function TorchlineLanding() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-              className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-3 lg:gap-6 text-sm lg:text-[15px] text-zinc-300/90 px-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-zinc-300/90 px-4"
             >
-              <div className="flex items-start sm:items-center gap-1.5 justify-center">
-                <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0 mt-0.5 sm:mt-0" />
-                <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
+              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
+                <ShieldCheck className="h-3.5 w-3.5 text-orange-400 flex-shrink-0" />
+                <span className="whitespace-nowrap leading-tight">
                   Role-based access and retention controls included
                 </span>
               </div>
-              <div className="flex items-start sm:items-center gap-1.5 justify-center text-zinc-400">
-                <CheckCircle2 className="h-4 w-4 lg:h-5 lg:w-5 text-orange-300 flex-shrink-0 mt-0.5 sm:mt-0" />
-                <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
+              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm text-zinc-400">
+                <CheckCircle2 className="h-3.5 w-3.5 text-orange-300 flex-shrink-0" />
+                <span className="whitespace-nowrap leading-tight">
                   Designed for restaurants, retail, and hospitality teams
                 </span>
               </div>
@@ -318,15 +331,21 @@ export default function TorchlineLanding() {
         </div>
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center space-y-6 sm:space-y-8">
-            <motion.p
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300"
+              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm"
             >
-              Watch Torchline in Action
-            </motion.p>
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-300">
+                Product Walkthrough
+              </span>
+            </motion.div>
             <motion.h2
               initial="hidden"
               whileInView="visible"
@@ -400,12 +419,14 @@ export default function TorchlineLanding() {
                   operators gain visibility, improve accountability, coach teams,
                   and protect profits across every location.
                 </p>
-                <p className="font-semibold text-zinc-900">
-                  Because cameras don&apos;t solve problems.
-                </p>
-                <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Visibility does.
-                </p>
+                <div className="border-l-4 border-orange-500 pl-5 space-y-1 text-left mt-4">
+                  <p className="font-semibold text-zinc-900">
+                    Because cameras don&apos;t solve problems.
+                  </p>
+                  <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                    Visibility does.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -574,7 +595,7 @@ export default function TorchlineLanding() {
       </section>
 
       {/* SECTION 7 — WHAT TORCHLINE MONITORS */}
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black bg-[radial-gradient(circle,_rgba(255,255,255,0.03)_1px,_transparent_1px)] bg-[length:24px_24px]">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
             <motion.div
@@ -666,13 +687,13 @@ export default function TorchlineLanding() {
       {/* SECTION 8 — SEARCH VIDEO LIKE GOOGLE */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-100">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="space-y-5 sm:space-y-6 text-center md:text-left"
+              className="space-y-5 sm:space-y-6 text-center"
             >
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
                 Find Any Moment{" "}
@@ -712,23 +733,6 @@ export default function TorchlineLanding() {
               <p className="text-lg sm:text-xl font-semibold text-zinc-900 pt-1">
                 The moments that matter, surfaced instantly.
               </p>
-            </motion.div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="relative"
-            >
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-200 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.01.31%20PM-aAAlzc6H8XbyAiPKrqusKxPSZD6XW4.png"
-                  alt="Video search interface"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                />
-              </div>
             </motion.div>
           </div>
         </div>
@@ -827,7 +831,7 @@ export default function TorchlineLanding() {
       </section>
 
       {/* SECTION 10 — USE CASES */}
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black bg-[radial-gradient(circle,_rgba(255,255,255,0.03)_1px,_transparent_1px)] bg-[length:24px_24px]">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
             <motion.div
@@ -869,10 +873,6 @@ export default function TorchlineLanding() {
                   resolution: "Review suspicious transactions instantly.",
                 },
                 {
-                  scenario: "Drive-Thru Bottleneck",
-                  resolution: "Identify throughput issues in real time.",
-                },
-                {
                   scenario: "SOP Violation",
                   resolution:
                     "Receive alerts when procedures aren't followed.",
@@ -886,14 +886,17 @@ export default function TorchlineLanding() {
                   resolution:
                     "Confirm orders and deliveries with video evidence.",
                 },
-              ].map((item) => (
+              ].map((item, i) => (
                 <motion.div
                   key={item.scenario}
                   variants={staggerItem}
                   className="h-full"
                 >
-                  <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-zinc-900/40 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
-                    <p className="text-base font-semibold text-white mb-2">
+                  <div className="relative flex h-full flex-col rounded-3xl border border-white/10 bg-zinc-900/40 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
+                    <span className="absolute top-4 right-5 text-xs font-mono text-orange-500/50">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-base font-semibold text-white mb-2 pr-8">
                       {item.scenario}
                     </p>
                     <p className="text-sm text-orange-300">{item.resolution}</p>
