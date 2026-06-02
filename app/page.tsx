@@ -19,13 +19,10 @@ import {
   Clock,
   ClipboardList,
   Zap,
-  DollarSign,
-  Lock,
   Eye,
   Search,
   ChevronDown,
   MapPin,
-  X,
   AlertTriangle,
 } from "lucide-react";
 import Image from "next/image";
@@ -416,32 +413,6 @@ export default function TorchlineLanding() {
                   Visibility does.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4 justify-center pt-2">
-                {[
-                  { stat: "5", label: "Concepts" },
-                  { stat: "9", label: "Locations Operated" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="px-5 py-3 rounded-xl border border-zinc-200 bg-white shadow-sm text-center"
-                  >
-                    <p className="text-3xl font-bold text-zinc-900">
-                      {item.stat}
-                    </p>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wide">
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-                <div className="px-5 py-3 rounded-xl border border-zinc-200 bg-white shadow-sm text-center flex flex-col justify-center">
-                  <p className="text-sm font-semibold text-zinc-900">
-                    Restaurant Owner
-                  </p>
-                  <p className="text-xs text-zinc-500 uppercase tracking-wide">
-                    &amp; Operator
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -608,148 +579,6 @@ export default function TorchlineLanding() {
         </div>
       </section>
 
-      {/* SECTION 6 — AI OPERATIONAL AGENTS */}
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-center space-y-3 sm:space-y-4"
-            >
-              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Always-On{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  AI Operational Agents
-                </span>
-              </h2>
-              <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto px-6 sm:px-4 text-balance">
-                Specialized AI agents continuously monitor operations and surface
-                the moments that matter most.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {[
-                {
-                  icon: Clock,
-                  title: "Labor Agent",
-                  monitors: [
-                    "Attendance",
-                    "Punctuality",
-                    "Shift execution",
-                    "Labor accountability",
-                  ],
-                  value:
-                    "Reduce time theft, buddy punching, and payroll disputes.",
-                },
-                {
-                  icon: ClipboardList,
-                  title: "Compliance Agent",
-                  monitors: [
-                    "SOP execution",
-                    "Uniform compliance",
-                    "PPE compliance",
-                    "Operational procedures",
-                  ],
-                  value: "Improve consistency and reduce compliance risk.",
-                },
-                {
-                  icon: Zap,
-                  title: "Service Agent",
-                  monitors: [
-                    "Throughput",
-                    "Queue conditions",
-                    "Drive-thru performance",
-                    "Service bottlenecks",
-                  ],
-                  value: "Improve guest experience and speed of service.",
-                },
-                {
-                  icon: DollarSign,
-                  title: "Shrink Agent",
-                  monitors: [
-                    "Refunds",
-                    "Suspicious activity",
-                    "Register behavior",
-                    "Unauthorized access",
-                  ],
-                  value: "Reduce shrinkage and operational fraud.",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Safety Agent",
-                  monitors: [
-                    "Slips and falls",
-                    "Hazards",
-                    "Smoke",
-                    "Fire",
-                    "Unsafe behavior",
-                  ],
-                  value: "Reduce incidents and liability exposure.",
-                },
-                {
-                  icon: Lock,
-                  title: "Security Agent",
-                  monitors: [
-                    "Loitering",
-                    "Intrusion",
-                    "Restricted areas",
-                    "Perimeter activity",
-                  ],
-                  value: "Improve security awareness and prevention.",
-                },
-              ].map((agent) => (
-                <motion.div
-                  key={agent.title}
-                  variants={staggerItem}
-                  className="h-full"
-                >
-                  <div className="group relative flex min-h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/70 via-zinc-900/40 to-zinc-900/80 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
-                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                        <agent.icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {agent.title}
-                      </h3>
-                    </div>
-                    <div className="mb-4 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500 mb-2">
-                        Monitors
-                      </p>
-                      <ul className="space-y-1">
-                        {agent.monitors.map((m) => (
-                          <li
-                            key={m}
-                            className="flex items-center gap-2 text-sm text-zinc-300"
-                          >
-                            <div className="w-1 h-1 rounded-full bg-orange-400 flex-shrink-0" />
-                            {m}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="pt-4 border-t border-white/10">
-                      <p className="text-sm text-orange-300">{agent.value}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 7 — WHAT TORCHLINE MONITORS */}
       <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -820,13 +649,13 @@ export default function TorchlineLanding() {
                 },
               ].map((group) => (
                 <motion.div key={group.label} variants={staggerItem}>
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5">
+                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5 text-center">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400 mb-3">
                       {group.label}
                     </p>
                     <ul className="space-y-2">
                       {group.items.map((item) => (
-                        <li key={item} className="flex items-center gap-2.5">
+                        <li key={item} className="flex items-center justify-center gap-2.5">
                           <CheckCircle2 className="h-3.5 w-3.5 text-orange-400/70 flex-shrink-0" />
                           <span className="text-sm text-zinc-300">{item}</span>
                         </li>
@@ -1076,82 +905,6 @@ export default function TorchlineLanding() {
                     <p className="text-sm text-orange-300">{item.resolution}</p>
                   </div>
                 </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 11 — COMPETITIVE COMPARISON */}
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-zinc-900">
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto space-y-12 sm:space-y-16">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-center space-y-3 sm:space-y-4"
-            >
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
-                How We Compare
-              </p>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Cameras Record.{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Torchline Understands.
-                </span>
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="rounded-3xl border border-white/10 overflow-hidden"
-            >
-              <div className="grid grid-cols-[1fr_auto_1fr] bg-zinc-800/80 px-3 sm:px-6 py-4 border-b border-white/10 items-center">
-                <div className="text-center text-xs sm:text-sm font-semibold text-zinc-400 uppercase tracking-wider">
-                  Traditional Cameras
-                </div>
-                <div className="flex items-center justify-center px-2 sm:px-4">
-                  <span className="text-xs font-bold text-zinc-500 bg-zinc-700/60 border border-white/10 rounded-full px-2 sm:px-2.5 py-1 tracking-widest">
-                    VS
-                  </span>
-                </div>
-                <div className="text-center text-xs sm:text-sm font-semibold text-orange-400 uppercase tracking-wider">
-                  Torchline
-                </div>
-              </div>
-              {[
-                ["Records footage", "Understands activity"],
-                ["Reactive", "Proactive"],
-                ["Manual review required", "Surfaces exceptions automatically"],
-                ["Security focused", "Operations focused"],
-                ["Hours of footage", "Actionable insights"],
-                ["Limited visibility", "Operational intelligence"],
-              ].map(([left, right], i) => (
-                <div
-                  key={left}
-                  className={`grid grid-cols-[1fr_auto_1fr] px-3 sm:px-6 py-3 sm:py-4 border-t border-white/10 items-center ${
-                    i % 2 === 0 ? "bg-zinc-900/30" : "bg-zinc-900/10"
-                  }`}
-                >
-                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-2">
-                    <X className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-red-500/60 flex-shrink-0" />
-                    <span className="text-xs sm:text-sm text-zinc-400 text-center">
-                      {left}
-                    </span>
-                  </div>
-                  <div className="w-px h-6 bg-white/10 mx-2 sm:mx-4" />
-                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 px-1 sm:px-2">
-                    <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-orange-400 flex-shrink-0" />
-                    <span className="text-xs sm:text-sm text-white font-medium text-center">
-                      {right}
-                    </span>
-                  </div>
-                </div>
               ))}
             </motion.div>
           </div>
