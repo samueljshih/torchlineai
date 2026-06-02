@@ -559,6 +559,12 @@ export default function TorchlineLanding() {
                     "Improve labor accountability, guest experience, and operational consistency.",
                 },
                 {
+                  icon: ShoppingBag,
+                  title: "Food Courts",
+                  description:
+                    "Monitor execution in high-volume environments.",
+                },
+                {
                   icon: Store,
                   title: "Convenience Stores",
                   description:
