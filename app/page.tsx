@@ -230,8 +230,7 @@ export default function TorchlineLanding() {
               <div className="flex items-start sm:items-center gap-1.5 justify-center">
                 <ShieldCheck className="h-4 w-4 lg:h-5 lg:w-5 text-orange-400 flex-shrink-0 mt-0.5 sm:mt-0" />
                 <span className="text-center lg:text-left lg:whitespace-nowrap leading-tight">
-                  Operator built — Role-based access and retention controls
-                  included
+                  Role-based access and retention controls included
                 </span>
               </div>
               <div className="flex items-start sm:items-center gap-1.5 justify-center text-zinc-400">
@@ -293,7 +292,7 @@ export default function TorchlineLanding() {
               variants={staggerContainer}
               className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2"
             >
-              {["Protect Profits", "Coach Teams", "Improve Execution"].map(
+              {["Protect Profits", "Coach Teams", "Elevate Execution"].map(
                 (item) => (
                   <motion.span
                     key={item}
