@@ -545,18 +545,21 @@ export default function TorchlineLanding() {
                   title: "Restaurants",
                   subtypes: "QSR • Fast Casual • Coffee & Beverage • Full Service • Food Courts",
                   description: "Balance labor, service, and execution across every shift and every location.",
+                  bgImage: "/restaurant_image.png",
                 },
                 {
                   icon: Store,
                   title: "Retail",
                   subtypes: "Convenience Stores • Specialty Retail • Multi-Location Retail",
                   description: "Reduce shrinkage, strengthen accountability, and monitor high-risk operational activity.",
+                  bgImage: "/retail.png",
                 },
                 {
                   icon: Building2,
                   title: "Hospitality",
                   subtypes: "Hotels • Entertainment Venues • Recreation Facilities",
                   description: "Deliver consistent guest experiences while maintaining operational standards across teams and locations.",
+                  bgImage: "/hospitality.png",
                 },
               ].map((item) => (
                 <motion.div
@@ -565,18 +568,24 @@ export default function TorchlineLanding() {
                   className="h-full"
                   whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
-                  <div className="flex h-full flex-col items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                      <item.icon className="h-6 w-6" />
+                  <div className="flex h-full flex-col rounded-3xl border border-zinc-200/80 bg-white shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all overflow-hidden hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
+                    <div className="relative h-52 w-full shrink-0">
+                      <Image
+                        src={item.bgImage!}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                      />
                     </div>
-                    <div className="space-y-2 text-left">
+                    <div className="flex flex-col gap-2 p-6 text-left">
                       <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-zinc-400 leading-relaxed">
+                      <p className="text-sm text-zinc-600 leading-relaxed font-medium">
                         {item.subtypes}
                       </p>
-                      <p className="text-sm text-zinc-600 leading-relaxed pt-1">
+                      <p className="text-xs text-zinc-400 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -608,6 +617,23 @@ export default function TorchlineLanding() {
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
                 From labor and compliance to safety and loss prevention, Torchline surfaces the operational events that affect margins, accountability, and operational consistency.
               </p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="relative w-full overflow-hidden rounded-3xl border border-white/10 shadow-[0_32px_85px_-40px_rgba(249,115,22,0.4)]"
+            >
+              <Image
+                src="/bounding_boxes.png"
+                alt="Torchline operational monitoring with bounding box detection"
+                width={1200}
+                height={675}
+                className="w-full h-auto"
+                sizes="(min-width: 1024px) 1152px, 100vw"
+              />
             </motion.div>
 
             <motion.div
@@ -695,15 +721,21 @@ export default function TorchlineLanding() {
                   In Seconds
                 </span>
               </h2>
-              <div className="space-y-2 text-base sm:text-lg text-zinc-700">
-                <p>Traditional video systems force teams to review hours of footage.</p>
-                <p>Torchline helps you find what you&apos;re looking for in seconds using natural language search.</p>
+              <div className="relative w-full overflow-hidden rounded-2xl border border-zinc-200 shadow-md">
+                <Image
+                  src="/timeline_real.png"
+                  alt="Torchline natural language video search"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                  sizes="(min-width: 640px) 672px, 100vw"
+                />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
                   Example Searches
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {[
                     "Employee wearing red shirt",
                     "Person entered back door",
@@ -714,10 +746,10 @@ export default function TorchlineLanding() {
                   ].map((ex) => (
                     <div
                       key={ex}
-                      className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 shadow-sm"
+                      className="flex items-center gap-2 rounded-md border border-zinc-200 bg-white px-2.5 py-1.5 shadow-sm"
                     >
-                      <Search className="h-3.5 w-3.5 text-orange-500 flex-shrink-0" />
-                      <span className="text-sm text-zinc-700 font-mono">
+                      <Search className="h-3 w-3 text-orange-500 flex-shrink-0" />
+                      <span className="text-xs text-zinc-700 font-mono">
                         {ex}
                       </span>
                     </div>
