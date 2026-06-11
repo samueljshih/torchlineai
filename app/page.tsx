@@ -239,7 +239,7 @@ export default function TorchlineLanding() {
               transition={{ type: "spring", stiffness: 55, damping: 18, delay: 0.25 }}
               className="max-w-2xl text-base sm:text-lg text-zinc-300"
             >
-              Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and uncover opportunities to drive profitability across every location.
+              Torchline transforms existing camera systems into an operational intelligence platform that helps organizations identify inefficiencies, strengthen accountability, and uncover opportunities to improve performance across every location.
             </motion.p>
 
             <motion.div
@@ -326,7 +326,7 @@ export default function TorchlineLanding() {
               className="space-y-3 text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto"
             >
               <p>Cameras record what happened.</p>
-              <p>Torchline transforms video into operational intelligence that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.</p>
+              <p>Torchline helps organizations uncover the operational moments that impact cash flow, accountability, and execution.</p>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -335,7 +335,7 @@ export default function TorchlineLanding() {
               variants={staggerContainer}
               className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2"
             >
-              {["Protect Profits", "Coach Teams", "Elevate Execution"].map(
+              {["Increase Cash Flow", "Strengthen Accountability", "Improve Execution"].map(
                 (item) => (
                   <motion.span
                     key={item}
@@ -392,7 +392,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
             >
-              See how Torchline highlights the moments that matter most, from labor and compliance to service, safety, and loss prevention.
+              See how Torchline helps organizations uncover inefficiencies, improve accountability, and identify opportunities to improve performance across every location.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -443,8 +443,7 @@ export default function TorchlineLanding() {
                 </p>
                 <p>So we built the platform we wished we had.</p>
                 <p>
-                  One that helps businesses protect profits, coach teams, and
-                  elevate execution across every location.
+                  One that helps organizations uncover inefficiencies, strengthen accountability, and improve performance across every location.
                 </p>
                 <div className="border-l-4 border-orange-500 pl-5 space-y-1 text-left mt-4">
                   <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
@@ -548,7 +547,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 text-balance px-4">
-                Torchline helps frontline teams protect profits, maintain standards, and execute consistently across every location.
+                Torchline helps organizations increase operational efficiency, strengthen accountability, and improve performance across every location.
               </p>
             </motion.div>
 
@@ -626,7 +625,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
-                From labor and compliance to safety and loss prevention, Torchline helps surface the operational moments that matter most.
+                From labor and compliance to safety and loss prevention, Torchline helps surface the operational moments that impact profitability, accountability, and execution.
               </p>
             </motion.div>
 
@@ -745,7 +744,7 @@ export default function TorchlineLanding() {
                 </div>
               </div>
               <p className="text-lg sm:text-xl font-semibold text-zinc-900 pt-1">
-                Search less. Know more. Act faster.
+                Search Less. Know More. Act Faster.
               </p>
             </motion.div>
           </div>
@@ -767,13 +766,14 @@ export default function TorchlineLanding() {
                 Why Torchline
               </p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
-                Operational Advantage{" "}
+                Increase Cash Flow.{" "}
+                Strengthen Accountability.{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Across Every Location
+                  Improve Execution.
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 px-4">
-                Torchline helps organizations protect profits, strengthen accountability, and improve execution without adding management overhead.
+                Torchline helps organizations identify inefficiencies, reduce operational friction, and improve performance across every location.
               </p>
             </motion.div>
 
@@ -787,9 +787,9 @@ export default function TorchlineLanding() {
               {[
                 {
                   icon: ShieldCheck,
-                  title: "Protect Profits",
+                  title: "Increase Cash Flow",
                   description:
-                    "Reduce losses from labor inefficiencies, operational risk, shrinkage, and preventable incidents.",
+                    "Identify labor inefficiencies, operational waste, shrinkage, and preventable losses.",
                 },
                 {
                   icon: ClipboardList,
@@ -801,7 +801,7 @@ export default function TorchlineLanding() {
                   icon: CheckCircle2,
                   title: "Improve Execution",
                   description:
-                    "Maintain standards, reinforce training, and ensure procedures are followed consistently.",
+                    "Maintain standards, reinforce training, and identify opportunities for continuous improvement.",
                 },
                 {
                   icon: MapPin,
@@ -865,6 +865,9 @@ export default function TorchlineLanding() {
                   Faster Answers.
                 </span>
               </h2>
+              <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
+                See how operational intelligence helps organizations reduce inefficiencies, strengthen accountability, and improve performance.
+              </p>
             </motion.div>
 
             <motion.div
@@ -922,6 +925,93 @@ export default function TorchlineLanding() {
                       {item.scenario}
                     </p>
                     <p className="text-sm text-zinc-400">{item.resolution}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION — WHO USES TORCHLINE */}
+      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-white">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center space-y-3 sm:space-y-4"
+            >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
+                Who Uses Torchline
+              </p>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
+                Who Uses{" "}
+                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  Torchline?
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {[
+                {
+                  icon: Building2,
+                  title: "Owners & Franchisees",
+                  description: "Gain operational intelligence across every location.",
+                },
+                {
+                  icon: Zap,
+                  title: "Operations Leaders",
+                  description: "Identify inefficiencies and improve execution at scale.",
+                },
+                {
+                  icon: MapPin,
+                  title: "District Managers",
+                  description: "Stay connected to every store from a single platform.",
+                },
+                {
+                  icon: ClipboardList,
+                  title: "General Managers",
+                  description: "Improve accountability, coaching, and daily execution.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Loss Prevention Teams",
+                  description: "Investigate incidents and reduce operational risk.",
+                },
+                {
+                  icon: CheckCircle2,
+                  title: "HR & Compliance Teams",
+                  description: "Support policy enforcement and workplace accountability.",
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={staggerItem}
+                  className="h-full"
+                  whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                >
+                  <div className="flex h-full items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-1 text-left">
+                      <h3 className="text-base font-semibold text-zinc-900 sm:text-lg">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-zinc-600/90">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -1005,7 +1095,7 @@ export default function TorchlineLanding() {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-zinc-400 px-6 sm:px-4 text-balance">
-              Torchline helps organizations protect profits, maintain standards, and execute consistently across every location.
+              Torchline helps organizations identify inefficiencies, strengthen accountability, and improve performance across every location.
             </p>
 
             <div className="mx-auto max-w-2xl w-full px-4">
@@ -1050,7 +1140,7 @@ export default function TorchlineLanding() {
                     <span>No spam. Just product updates.</span>
                   </div>
                   <p className="text-sm text-zinc-500 pl-6">
-                    We&apos;ll reach out within 1 business day to schedule a 20-minute walkthrough.
+                    We&apos;ll reach out within 1 business day to schedule a personalized walkthrough.
                   </p>
                 </div>
               </form>
