@@ -12,15 +12,15 @@ const TORCHLINE_LOGO_URL =
 const OG_IMAGE_URL = "/torchline_preview.png"
 
 export const metadata: Metadata = {
-  title: "Torchline AI - Vision AI That Protects, Coaches, and Elevates",
+  title: "Torchline AI - Operational Advantage Powered by Vision AI",
   description:
-    "Real-time safety and performance intelligence for physical operations in restaurants, retail, and hospitality.",
+    "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
   generator: "v0.app",
   metadataBase: new URL("https://torchline.ai"),
   openGraph: {
-    title: "Torchline AI - Vision AI That Protects, Coaches, and Elevates",
+    title: "Torchline AI - Operational Advantage Powered by Vision AI",
     description:
-      "Real-time safety and performance intelligence for physical operations in restaurants, retail, and hospitality.",
+      "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
     siteName: "Torchline AI",
     images: [
       {
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Torchline AI - Vision AI That Protects, Coaches, and Elevates",
+    title: "Torchline AI - Operational Advantage Powered by Vision AI",
     description:
-      "Real-time safety and performance intelligence for physical operations in restaurants, retail, and hospitality.",
+      "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
     images: [OG_IMAGE_URL],
   },
   icons: {

@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import {
   Coffee,
   Store,
   ShoppingBag,
+  Building2,
   ShieldCheck,
   CheckCircle2,
   Camera,
@@ -38,7 +39,7 @@ const fadeInUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { type: "spring", stiffness: 60, damping: 20 },
   },
 };
 
@@ -46,7 +47,7 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -55,7 +56,7 @@ const staggerItem: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { type: "spring", stiffness: 70, damping: 18 },
   },
 };
 
@@ -63,32 +64,42 @@ const faqItems = [
   {
     question: "Do I need new cameras?",
     answer:
-      "No. Torchline is designed to work with most existing camera systems. No rip-and-replace, no costly hardware overhaul, and no disruption to daily operations.",
+      "No. Torchline is designed to work with most existing camera systems, helping organizations unlock more value from their current infrastructure.",
   },
   {
     question: "How long does deployment take?",
     answer:
-      "Most deployments are completed quickly with minimal disruption to daily operations. Simply connect your existing cameras and begin turning video into operational intelligence.",
+      "Most deployments can be completed quickly with minimal disruption to daily operations.",
   },
   {
     question: "Can Torchline work across multiple locations?",
     answer:
-      "Yes. Torchline is built for multi-unit operators and provides centralized visibility across every location from a single platform.",
+      "Yes. Torchline is built for multi-location organizations and provides centralized oversight across every location from a single platform.",
   },
   {
     question: "Does Torchline replace my security system?",
     answer:
-      "No. Torchline is an operational intelligence platform that works alongside your existing security infrastructure.",
+      "No. Torchline complements your existing camera and security systems by adding operational intelligence and automated monitoring capabilities.",
   },
   {
     question: "What camera systems are supported?",
     answer:
-      "Torchline is designed to work with most existing commercial camera systems. Contact us to verify compatibility with your specific setup.",
+      "Torchline is compatible with many leading camera and video management systems. Contact us to discuss your specific environment.",
+  },
+  {
+    question: "How is Torchline different from traditional camera systems?",
+    answer:
+      "Traditional camera systems record footage. Torchline helps organizations surface the operational moments that matter most, making it easier to improve accountability, execution, and performance.",
+  },
+  {
+    question: "Who uses Torchline?",
+    answer:
+      "Torchline is used by owners, operators, district managers, general managers, loss prevention teams, and compliance leaders looking to improve operational performance.",
   },
   {
     question: "How is data stored and protected?",
     answer:
-      "Torchline includes role-based access controls and retention management. Data security and privacy are built into the platform.",
+      "Torchline follows industry-standard security practices designed to protect customer data, video, and operational information.",
   },
 ];
 
@@ -99,6 +110,9 @@ export default function TorchlineLanding() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 600], [0, 120]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -182,14 +196,16 @@ export default function TorchlineLanding() {
       {/* SECTION 1 — HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
         <div className="absolute inset-0">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%2010.06.57%20PM-oZm3C0EK3qGau9X8GvLZdDyCS6YBxx.png"
-            alt="Torchline Operations Command Center"
-            fill
-            priority
-            className="w-full h-full transform object-cover object-[center_40%] sm:object-center scale-[1.05]"
-            sizes="100vw"
-          />
+          <motion.div className="absolute inset-0" style={{ y: heroY }}>
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%2010.06.57%20PM-oZm3C0EK3qGau9X8GvLZdDyCS6YBxx.png"
+              alt="Torchline Operations Command Center"
+              fill
+              priority
+              className="w-full h-full transform object-cover object-[center_40%] sm:object-center scale-[1.15]"
+              sizes="100vw"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         </div>
 
@@ -198,19 +214,33 @@ export default function TorchlineLanding() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 50, damping: 18 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
-              Vision AI That
+              Operational Advantage
               <br />
-              <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Protects,
-                <br className="hidden sm:block" />
-                Coaches,
+              <span className="bg-[linear-gradient(90deg,#fb923c,#ef4444,#f97316,#dc2626)] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+                Powered by Vision AI
               </span>
-              <br />
-              And Elevates
             </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 55, damping: 18, delay: 0.15 }}
+              className="text-xl sm:text-2xl md:text-3xl font-semibold text-white"
+            >
+              Increase Cash Flow. Grow Revenue. Improve Margins.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 55, damping: 18, delay: 0.25 }}
+              className="max-w-2xl text-base sm:text-lg text-zinc-300"
+            >
+              Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and uncover opportunities to drive profitability across every location.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,7 +316,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent"
             >
-              Very Few Have Visibility.
+              Very Few Have Operational Intelligence.
             </motion.h3>
             <motion.div
               initial="hidden"
@@ -296,7 +326,7 @@ export default function TorchlineLanding() {
               className="space-y-3 text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto"
             >
               <p>Cameras record what happened.</p>
-              <p>Torchline helps operators understand what matters.</p>
+              <p>Torchline transforms video into operational intelligence that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.</p>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -362,9 +392,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
             >
-              See how Torchline turns everyday camera feeds into clear
-              operational signals for coaching, compliance, and multi-site
-              oversight.
+              See how Torchline highlights the moments that matter most, from labor and compliance to service, safety, and loss prevention.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -404,27 +432,23 @@ export default function TorchlineLanding() {
                 Built By A Restaurant Operator
               </h2>
               <div className="space-y-3 text-base sm:text-lg text-zinc-700 leading-relaxed">
-                <p>Torchline wasn&apos;t created in a Silicon Valley boardroom.</p>
                 <p>
-                  It was built by a restaurant operator who spent years managing
-                  labor, compliance, guest experience, training, and multi-unit
-                  operations firsthand.
+                  Torchline was born from firsthand experience managing the
+                  complexities of multi-unit operations.
                 </p>
-                <p>Like many operators, we had cameras.</p>
-                <p>But cameras only recorded what happened.</p>
-                <p>They didn&apos;t provide visibility.</p>
-                <p>Torchline was built to bridge that gap.</p>
                 <p>
-                  We created the platform we wished we had, one that helps
-                  operators gain visibility, improve accountability, coach teams,
-                  and protect profits across every location.
+                  Labor, compliance, training, guest experience, and execution
+                  all require constant attention, but no one can be everywhere
+                  at once.
+                </p>
+                <p>So we built the platform we wished we had.</p>
+                <p>
+                  One that helps businesses protect profits, coach teams, and
+                  elevate execution across every location.
                 </p>
                 <div className="border-l-4 border-orange-500 pl-5 space-y-1 text-left mt-4">
-                  <p className="font-semibold text-zinc-900">
-                    Because cameras don&apos;t solve problems.
-                  </p>
                   <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                    Visibility does.
+                    Built from experience. Designed for scale.
                   </p>
                 </div>
               </div>
@@ -454,16 +478,15 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <div className="space-y-3 text-base sm:text-lg text-zinc-300 leading-relaxed">
-                <p>
-                  Torchline is designed to work with most existing camera
-                  systems.
-                </p>
+                <p>Most businesses already have cameras.</p>
+                <p>Torchline helps them do more.</p>
                 <p>No rip-and-replace.</p>
-                <p>No costly hardware overhaul.</p>
+                <p>No expensive hardware upgrades.</p>
                 <p>No disruption to daily operations.</p>
                 <p>
-                  Simply connect your existing cameras and begin turning video
-                  into operational intelligence.
+                  Simply connect your existing camera systems and start
+                  uncovering opportunities to improve accountability, execution,
+                  and performance.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3 pt-4">
@@ -492,8 +515,8 @@ export default function TorchlineLanding() {
             >
               <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%209.02.49%20PM-LqRDKIvKBE2n4gMiFuY3wl6BEmTk8m.png"
-                  alt="Torchline operational intelligence platform"
+                  src="/security_camera_photo.jpg"
+                  alt="Security camera mounted on wall"
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -519,11 +542,14 @@ export default function TorchlineLanding() {
                 Industries We Serve
               </p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
-                Purpose Built For{" "}
+                Purpose-Built For{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  High Volume Operations
+                  Frontline Operations
                 </span>
               </h2>
+              <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 text-balance px-4">
+                Torchline helps frontline teams protect profits, maintain standards, and execute consistently across every location.
+              </p>
             </motion.div>
 
             <motion.div
@@ -531,60 +557,46 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              className="grid gap-4 sm:grid-cols-3"
             >
               {[
                 {
                   icon: UtensilsCrossed,
-                  title: "QSR",
-                  description:
-                    "Reduce labor leakage, improve speed of service, and maintain consistency.",
-                },
-                {
-                  icon: UtensilsCrossed,
-                  title: "Fast Casual",
-                  description:
-                    "Protect execution and operational standards across every shift.",
-                },
-                {
-                  icon: Coffee,
-                  title: "Coffee & Beverage Chains",
-                  description:
-                    "Improve throughput during peak operating hours.",
-                },
-                {
-                  icon: ShoppingBag,
-                  title: "Full Service Restaurants",
-                  description:
-                    "Improve labor accountability, guest experience, and operational consistency.",
-                },
-                {
-                  icon: ShoppingBag,
-                  title: "Food Courts",
-                  description:
-                    "Monitor execution in high-volume environments.",
+                  title: "Restaurants",
+                  subtypes: "QSR • Fast Casual • Coffee & Beverage • Full Service • Food Courts",
+                  description: "Balance labor, service, and execution across every shift and every location.",
                 },
                 {
                   icon: Store,
-                  title: "Convenience Stores",
-                  description:
-                    "Reduce shrinkage, improve accountability, and monitor high-risk operational activity.",
+                  title: "Retail",
+                  subtypes: "Convenience Stores • Specialty Retail • Multi-Location Retail",
+                  description: "Reduce shrinkage, strengthen accountability, and monitor high-risk operational activity.",
+                },
+                {
+                  icon: Building2,
+                  title: "Hospitality",
+                  subtypes: "Hotels • Entertainment Venues • Recreation Facilities",
+                  description: "Deliver consistent guest experiences while maintaining operational standards across teams and locations.",
                 },
               ].map((item) => (
                 <motion.div
                   key={item.title}
                   variants={staggerItem}
                   className="h-full"
+                  whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
-                  <div className="flex h-full items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:-translate-y-1 hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
+                  <div className="flex h-full flex-col items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-6 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
                       <item.icon className="h-6 w-6" />
                     </div>
-                    <div className="space-y-1 text-left">
-                      <h3 className="text-base font-semibold text-zinc-900 sm:text-lg">
+                    <div className="space-y-2 text-left">
+                      <h3 className="text-lg font-semibold text-zinc-900 sm:text-xl">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-zinc-600/90">
+                      <p className="text-xs text-zinc-400 leading-relaxed">
+                        {item.subtypes}
+                      </p>
+                      <p className="text-sm text-zinc-600 leading-relaxed pt-1">
                         {item.description}
                       </p>
                     </div>
@@ -607,15 +619,15 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="text-center space-y-3 sm:space-y-4"
             >
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
-                Platform Coverage
-              </p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Operational Visibility{" "}
+                What Torchline{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Across Every Location
+                  Monitors
                 </span>
               </h2>
+              <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
+                From labor and compliance to safety and loss prevention, Torchline helps surface the operational moments that matter most.
+              </p>
             </motion.div>
 
             <motion.div
@@ -646,7 +658,7 @@ export default function TorchlineLanding() {
                   ],
                 },
                 {
-                  label: "Loss & Register",
+                  label: "Loss Prevention",
                   items: [
                     "Register activity",
                     "Refund events",
@@ -665,8 +677,8 @@ export default function TorchlineLanding() {
                   ],
                 },
               ].map((group) => (
-                <motion.div key={group.label} variants={staggerItem}>
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5">
+                <motion.div key={group.label} variants={staggerItem} className="h-full" whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-zinc-900/40 p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400 mb-3">
                       {group.label}
                     </p>
@@ -704,8 +716,8 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <div className="space-y-2 text-base sm:text-lg text-zinc-700">
-                <p>Stop reviewing hours of footage.</p>
-                <p>Search video using natural language.</p>
+                <p>Traditional video systems force teams to review hours of footage.</p>
+                <p>Torchline helps you find what you&apos;re looking for in seconds using natural language search.</p>
               </div>
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
@@ -733,7 +745,7 @@ export default function TorchlineLanding() {
                 </div>
               </div>
               <p className="text-lg sm:text-xl font-semibold text-zinc-900 pt-1">
-                The moments that matter, surfaced instantly.
+                Search less. Know more. Act faster.
               </p>
             </motion.div>
           </div>
@@ -755,11 +767,14 @@ export default function TorchlineLanding() {
                 Why Torchline
               </p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-zinc-900 px-4">
-                Built For{" "}
+                Operational Advantage{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                  Operational Results
+                  Across Every Location
                 </span>
               </h2>
+              <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 px-4">
+                Torchline helps organizations protect profits, strengthen accountability, and improve execution without adding management overhead.
+              </p>
             </motion.div>
 
             <motion.div
@@ -767,52 +782,41 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              className="grid gap-4 sm:grid-cols-2"
             >
               {[
                 {
-                  icon: Clock,
-                  title: "Labor Accountability",
+                  icon: ShieldCheck,
+                  title: "Protect Profits",
                   description:
-                    "Reduce payroll leakage and attendance disputes.",
+                    "Reduce losses from labor inefficiencies, operational risk, shrinkage, and preventable incidents.",
                 },
                 {
                   icon: ClipboardList,
-                  title: "SOP Compliance",
+                  title: "Strengthen Accountability",
                   description:
-                    "Verify operational standards across every shift.",
+                    "Create greater consistency across teams, shifts, and locations through objective operational oversight.",
                 },
                 {
-                  icon: Eye,
-                  title: "Loss Prevention",
+                  icon: CheckCircle2,
+                  title: "Improve Execution",
                   description:
-                    "Identify suspicious behavior before losses escalate.",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Liability Protection",
-                  description:
-                    "Maintain searchable audit trails and incident records.",
-                },
-                {
-                  icon: Video,
-                  title: "Faster Coaching",
-                  description:
-                    "Turn operational moments into teachable opportunities.",
+                    "Maintain standards, reinforce training, and ensure procedures are followed consistently.",
                 },
                 {
                   icon: MapPin,
-                  title: "Multi-Unit Visibility",
+                  title: "Scale With Confidence",
                   description:
-                    "See what's happening without being everywhere.",
+                    "Stay connected to every location without needing to be everywhere at once.",
                 },
               ].map((item) => (
                 <motion.div
                   key={item.title}
                   variants={staggerItem}
                   className="h-full"
+                  whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
-                  <div className="flex h-full items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:-translate-y-1 hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
+                  <div className="flex h-full items-start gap-4 rounded-3xl border border-zinc-200/80 bg-white p-5 shadow-[0_20px_44px_-32px_rgba(15,15,15,0.55)] transition-all hover:border-orange-400/60 hover:shadow-[0_28px_60px_-35px_rgba(249,115,22,0.55)]">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white">
                       <item.icon className="h-6 w-6" />
                     </div>
@@ -828,6 +832,15 @@ export default function TorchlineLanding() {
                 </motion.div>
               ))}
             </motion.div>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="text-center text-lg sm:text-xl font-semibold text-zinc-900"
+            >
+              Built for businesses that can&apos;t be everywhere at once.
+            </motion.p>
           </div>
         </div>
       </section>
@@ -847,9 +860,9 @@ export default function TorchlineLanding() {
                 Real Scenarios
               </p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Real Operational Problems.{" "}
+                Operational Challenges.{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  Real-Time Visibility.
+                  Faster Answers.
                 </span>
               </h2>
             </motion.div>
@@ -859,40 +872,47 @@ export default function TorchlineLanding() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
             >
               {[
                 {
-                  scenario: "Employee Didn't Clock In",
-                  resolution: "AI verifies arrival and attendance.",
+                  scenario: "Employee Arrived Late",
+                  resolution: "Verify attendance issues and identify recurring labor trends.",
                 },
                 {
                   scenario: "Guest Slip & Fall",
-                  resolution: "Locate footage immediately.",
+                  resolution: "Locate relevant footage immediately and accelerate investigations.",
                 },
                 {
                   scenario: "Refund Investigation",
-                  resolution: "Review suspicious transactions instantly.",
+                  resolution: "Review suspicious transactions and operational exceptions in seconds.",
                 },
                 {
                   scenario: "SOP Violation",
-                  resolution:
-                    "Receive alerts when procedures aren't followed.",
+                  resolution: "Identify missed procedures and reinforce operational standards.",
                 },
                 {
                   scenario: "Unauthorized Entry",
-                  resolution: "Detect access to restricted areas.",
+                  resolution: "Detect access to restricted areas and unauthorized activity.",
                 },
                 {
-                  scenario: "Delivery Verification",
-                  resolution:
-                    "Confirm orders and deliveries with video evidence.",
+                  scenario: "Opening Procedures Not Completed",
+                  resolution: "Verify critical opening standards are completed consistently across locations.",
+                },
+                {
+                  scenario: "Which Teams Need Coaching?",
+                  resolution: "Identify recurring operational patterns and coaching opportunities.",
+                },
+                {
+                  scenario: "Why Is Store #12 Underperforming?",
+                  resolution: "Compare operational trends, accountability, and execution across locations.",
                 },
               ].map((item, i) => (
                 <motion.div
                   key={item.scenario}
                   variants={staggerItem}
                   className="h-full"
+                  whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
                   <div className="relative flex h-full flex-col rounded-3xl border border-white/10 bg-zinc-900/40 p-6 transition-all hover:border-orange-400/60 hover:shadow-[0_22px_55px_-28px_rgba(249,115,22,0.75)]">
                     <span className="absolute top-4 right-5 text-xs font-mono text-orange-500/50">
@@ -901,81 +921,11 @@ export default function TorchlineLanding() {
                     <p className="text-base font-semibold text-white mb-2 pr-8">
                       {item.scenario}
                     </p>
-                    <p className="text-sm text-orange-300">{item.resolution}</p>
+                    <p className="text-sm text-zinc-400">{item.resolution}</p>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 12 — WHY NOW */}
-      <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-black">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/last-GUG5TRbJeDQbA38zYRs7pfy2S3OtIz.png"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/85 to-black" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12 sm:space-y-16">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-center space-y-3 sm:space-y-4"
-            >
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
-                The Opportunity
-              </p>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-                Restaurant Operations Are{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                  More Complex Than Ever
-                </span>
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {[
-                "Rising labor costs",
-                "Labor shortages",
-                "Increased compliance requirements",
-                "Multi-unit management challenges",
-                "Shrinkage and fraud",
-                "Growing guest expectations",
-              ].map((challenge) => (
-                <motion.div key={challenge} variants={staggerItem}>
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/40 px-5 py-4">
-                    <AlertTriangle className="h-4 w-4 text-orange-500/70 flex-shrink-0" />
-                    <span className="text-base text-zinc-200">{challenge}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="text-center text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto"
-            >
-              Torchline helps operators gain visibility without adding management
-              overhead.
-            </motion.p>
           </div>
         </div>
       </section>
@@ -1049,39 +999,37 @@ export default function TorchlineLanding() {
             className="max-w-2xl mx-auto text-center space-y-6 sm:space-y-8"
           >
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance px-4">
-              See What Your Cameras{" "}
+              Operational Advantage{" "}
               <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                Are Missing
+                Starts Here.
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-zinc-400 px-6 sm:px-4 text-balance">
-              Torchline helps operators protect profits, coach teams, and improve
-              execution by transforming existing cameras into an always-on
-              operational intelligence platform.
+              Torchline helps organizations protect profits, maintain standards, and execute consistently across every location.
             </p>
 
-            <div className="mx-auto max-w-md px-4">
+            <div className="mx-auto max-w-2xl w-full px-4">
               <form
                 onSubmit={handleSubmit}
-                className="space-y-5 rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_24px_65px_-40px_rgba(249,115,22,0.8)] backdrop-blur-xl"
+                className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-12 shadow-[0_24px_65px_-40px_rgba(249,115,22,0.8)] backdrop-blur-xl"
               >
                 <input type="hidden" name="form" value="torchline-demo" />
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col gap-4">
                   <Input
                     type="email"
                     name="email"
-                    placeholder="Enter your email"
+                    placeholder="Enter your work email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={isSubmitting}
-                    className="flex-1 border-white/20 bg-black/40 py-4 text-lg text-white placeholder:text-zinc-500 focus:border-orange-500"
+                    className="w-full border-white/20 bg-black/40 h-14 px-5 text-lg text-white placeholder:text-zinc-500 focus:border-orange-500"
                   />
                   <Button
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 px-8 py-4 text-lg text-white border-0 whitespace-nowrap shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
+                    className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 h-14 text-lg text-white border-0 shadow-[0_10px_30px_rgba(249,115,22,0.45)]"
                   >
                     {isSubmitting ? "Submitting..." : "Schedule A Demo"}
                   </Button>
@@ -1097,11 +1045,11 @@ export default function TorchlineLanding() {
                   </p>
                 )}
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-xs text-zinc-400">
-                    <ShieldCheck className="h-4 w-4 text-orange-300" />
+                  <div className="flex items-center gap-2 text-sm text-zinc-400">
+                    <ShieldCheck className="h-4 w-4 text-orange-300 flex-shrink-0" />
                     <span>No spam. Just product updates.</span>
                   </div>
-                  <p className="text-xs text-zinc-500 pl-6">
+                  <p className="text-sm text-zinc-500 pl-6">
                     We&apos;ll reach out within 1 business day to schedule a 20-minute walkthrough.
                   </p>
                 </div>
