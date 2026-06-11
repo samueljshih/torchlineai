@@ -239,7 +239,7 @@ export default function TorchlineLanding() {
               transition={{ type: "spring", stiffness: 55, damping: 18, delay: 0.25 }}
               className="max-w-2xl text-base sm:text-lg text-zinc-300"
             >
-              Torchline transforms existing camera systems into an operational intelligence platform that helps organizations identify inefficiencies, strengthen accountability, and uncover opportunities to improve performance across every location.
+              Torchline transforms existing camera systems into an operational intelligence platform that helps organizations uncover opportunities to increase cash flow, grow revenue, and improve margins.
             </motion.p>
 
             <motion.div
@@ -263,25 +263,6 @@ export default function TorchlineLanding() {
               >
                 <a href="#book-demo">Book A Demo</a>
               </Button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-zinc-300/90 px-4"
-            >
-              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
-                <ShieldCheck className="h-3.5 w-3.5 text-orange-400 flex-shrink-0" />
-                <span className="whitespace-nowrap leading-tight">
-                  Role-based access and retention controls included
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm text-zinc-400">
-                <CheckCircle2 className="h-3.5 w-3.5 text-orange-300 flex-shrink-0" />
-                <span className="whitespace-nowrap leading-tight">
-                  Designed for restaurants, retail, and hospitality teams
-                </span>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -392,7 +373,7 @@ export default function TorchlineLanding() {
               variants={fadeInUp}
               className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
             >
-              See how Torchline helps organizations uncover inefficiencies, improve accountability, and identify opportunities to improve performance across every location.
+              See how Torchline transforms everyday video into operational insights that help teams act faster and operate more effectively.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -443,7 +424,7 @@ export default function TorchlineLanding() {
                 </p>
                 <p>So we built the platform we wished we had.</p>
                 <p>
-                  One that helps organizations uncover inefficiencies, strengthen accountability, and improve performance across every location.
+                  One that helps leaders make better operational decisions without needing to be everywhere at once.
                 </p>
                 <div className="border-l-4 border-orange-500 pl-5 space-y-1 text-left mt-4">
                   <p className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
@@ -547,7 +528,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 text-balance px-4">
-                Torchline helps organizations increase operational efficiency, strengthen accountability, and improve performance across every location.
+                Torchline helps frontline organizations operate more efficiently, maintain standards, and scale with confidence.
               </p>
             </motion.div>
 
@@ -625,7 +606,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
-                From labor and compliance to safety and loss prevention, Torchline helps surface the operational moments that impact profitability, accountability, and execution.
+                From labor and compliance to safety and loss prevention, Torchline surfaces the operational events that affect margins, accountability, and operational consistency.
               </p>
             </motion.div>
 
@@ -773,7 +754,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 px-4">
-                Torchline helps organizations identify inefficiencies, reduce operational friction, and improve performance across every location.
+                Torchline helps organizations reduce operational leakage, strengthen accountability, and create more consistent execution across every location.
               </p>
             </motion.div>
 
@@ -866,7 +847,7 @@ export default function TorchlineLanding() {
                 </span>
               </h2>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-300 px-4">
-                See how operational intelligence helps organizations reduce inefficiencies, strengthen accountability, and improve performance.
+                See how operators use Torchline to investigate incidents, improve execution, and uncover opportunities for improvement.
               </p>
             </motion.div>
 
@@ -1095,7 +1076,7 @@ export default function TorchlineLanding() {
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-zinc-400 px-6 sm:px-4 text-balance">
-              Torchline helps organizations identify inefficiencies, strengthen accountability, and improve performance across every location.
+              Turn existing cameras into operational intelligence that helps your business run more efficiently and profitably.
             </p>
 
             <div className="mx-auto max-w-2xl w-full px-4">
