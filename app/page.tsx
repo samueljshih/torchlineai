@@ -576,6 +576,7 @@ export default function TorchlineLanding() {
                         fill
                         className="object-cover"
                         sizes="(min-width: 768px) 33vw, 100vw"
+                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col gap-2 p-6 text-left">
@@ -629,10 +630,11 @@ export default function TorchlineLanding() {
               <Image
                 src="/bounding_boxes.png"
                 alt="Torchline operational monitoring with bounding box detection"
-                width={1200}
-                height={675}
+                width={1536}
+                height={1024}
                 className="w-full h-auto"
                 sizes="(min-width: 1024px) 1152px, 100vw"
+                unoptimized
               />
             </motion.div>
 
@@ -725,10 +727,11 @@ export default function TorchlineLanding() {
                 <Image
                   src="/timeline_real.png"
                   alt="Torchline natural language video search"
-                  width={1200}
-                  height={675}
+                  width={1752}
+                  height={898}
                   className="w-full h-auto"
                   sizes="(min-width: 640px) 672px, 100vw"
+                  unoptimized
                 />
               </div>
               <div className="space-y-1.5">
