@@ -366,15 +366,6 @@ export default function TorchlineLanding() {
             >
               Inside the Torchline Command Center
             </motion.h2>
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUp}
-              className="max-w-3xl text-base sm:text-lg text-zinc-300 text-balance px-6 sm:px-4"
-            >
-              See how Torchline transforms everyday video into operational insights that help teams act faster and operate more effectively.
-            </motion.p>
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -527,9 +518,6 @@ export default function TorchlineLanding() {
                   Frontline Operations
                 </span>
               </h2>
-              <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 text-balance px-4">
-                Torchline helps frontline organizations operate more efficiently, maintain standards, and scale with confidence.
-              </p>
             </motion.div>
 
             <motion.div
