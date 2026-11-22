@@ -1,110 +1,60 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { useRef } from "react";
-import { COMMAND_CENTER_URL, PILLARS } from "./content";
-import { HudFrame } from "./hud";
-import { Reveal, RevealGroup, RevealItem } from "./motion";
-import { Container, Kicker } from "./ui";
+import { CheckCircle2, ClipboardList, TrendingUp } from "lucide-react";
+import { PILLARS } from "./content";
+import { Reveal } from "./motion";
+import { Accent, Section, h2Class, leadClass } from "./ui";
 
-function Word({ progress, range, children }: { progress: MotionValue<number>; range: [number, number]; children: string }) {
-  const opacity = useTransform(progress, range, [0.16, 1]);
-  // Reduced motion is handled in CSS (not useReducedMotion) so server and client markup always match.
-  return (
-    <motion.span style={{ opacity }} className="motion-reduce:!opacity-100">
-      {children}{" "}
-    </motion.span>
-  );
-}
-
-/** Statement whose words brighten one by one as the reader scrolls through it. */
-function ScrollStatement({ lines }: { lines: string[] }) {
-  const ref = useRef<HTMLHeadingElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 50%"] });
-
-  const words = lines.flatMap((line, lineIndex) => line.split(" ").map((word) => ({ word, lineIndex })));
-  const total = words.length;
-
-  return (
-    <h2
-      ref={ref}
-      className="relative text-balance text-[38px] font-medium leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[88px]"
-    >
-      {lines.map((line, lineIndex) => (
-        <span key={line} className={lineIndex > 0 ? "block text-zinc-500" : "block"}>
-          {words.map(({ word, lineIndex: li }, i) =>
-            li === lineIndex ? (
-              <Word key={i} progress={scrollYProgress} range={[i / total, (i + 1) / total]}>
-                {word}
-              </Word>
-            ) : null,
-          )}
-        </span>
-      ))}
-    </h2>
-  );
-}
-
-function CommandCenterShot() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  // The source's left third is empty backdrop, so zoom toward the bottom-right where the product sits.
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1.45, 1.35]);
-
-  return (
-    <Reveal>
-      <div ref={ref} className="relative">
-        <HudFrame className="aspect-[4/3] sm:aspect-[16/9]">
-          <motion.div className="absolute inset-0 origin-bottom-right" style={{ scale }}>
-            <Image
-              src={COMMAND_CENTER_URL}
-              alt="Torchline Operations Command Center"
-              fill
-              sizes="(min-width: 1440px) 2064px, 150vw"
-              className="object-cover object-right-bottom"
-            />
-          </motion.div>
-        </HudFrame>
-      </div>
-      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
-        Fig. 01 <span className="mx-2 text-zinc-700">/</span> Operations Command Center
-      </p>
-    </Reveal>
-  );
-}
+const PILLAR_ICONS = [TrendingUp, ClipboardList, CheckCircle2];
 
 export function BigIdea() {
   return (
-    <section id="platform" className="relative scroll-mt-16 border-t border-line">
-      <Container className="space-y-16 py-24 sm:space-y-24 sm:py-32 lg:py-40">
-        <div className="space-y-10">
-          <Kicker index="01">Platform</Kicker>
-          <ScrollStatement
-            lines={["Most Restaurants Already Have Cameras.", "Very Few Have Operational Intelligence."]}
-          />
-        </div>
-
-        <div className="grid gap-12 lg:grid-cols-12">
-          <Reveal className="space-y-3 text-lg leading-relaxed text-zinc-400 sm:text-xl lg:col-span-5 lg:col-start-1">
-            <p className="text-white">Cameras record what happened.</p>
+    <Section tone="light">
+      <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+        <div className="space-y-8">
+          <Reveal className="space-y-5">
+            <h2 className={h2Class}>Most Restaurants Already Have Cameras.</h2>
+            <p className="text-balance text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
+              <Accent>Very Few Have Operational Intelligence.</Accent>
+            </p>
+          </Reveal>
+          <Reveal delay={80} className={`space-y-2 ${leadClass}`}>
+            <p className="font-medium text-fg">Cameras record what happened.</p>
             <p>Torchline helps organizations uncover the operational moments that impact cash flow, accountability, and execution.</p>
           </Reveal>
-          <RevealGroup className="grid border-t border-line sm:grid-cols-3 lg:col-span-7">
-            {PILLARS.map((pillar, i) => (
-              <RevealItem
-                key={pillar}
-                className="flex items-baseline gap-4 border-b border-line py-5 sm:flex-col sm:gap-6 sm:border-b-0 sm:py-6 sm:pr-6 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:pl-6"
-              >
-                <span className="font-mono text-[11px] text-torch">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-lg font-medium tracking-[-0.01em] text-white">{pillar}</span>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <ul className="grid gap-3 sm:grid-cols-3">
+            {PILLARS.map((pillar, i) => {
+              const Icon = PILLAR_ICONS[i];
+              return (
+                <Reveal as="li" key={pillar} delay={140 + i * 70}>
+                  <div className="flex h-full items-center gap-3 rounded-2xl border border-edge bg-raised p-4 sm:flex-col sm:items-start">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-accent-fg">
+                      <Icon className="h-[18px] w-[18px]" aria-hidden />
+                    </span>
+                    <span className="text-[15px] font-semibold leading-snug tracking-[-0.01em]">{pillar}</span>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ul>
         </div>
 
-        <CommandCenterShot />
-      </Container>
-    </section>
+        <Reveal delay={100} className="relative">
+          <div
+            aria-hidden
+            className="absolute -inset-6 -z-0 rounded-[40px] bg-[radial-gradient(ellipse_at_center,rgba(242,106,27,0.16),transparent_70%)] blur-2xl"
+          />
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_40px_80px_-30px_rgba(20,17,15,0.45),0_12px_24px_-12px_rgba(20,17,15,0.2)]">
+            <Image
+              src="/security_camera.webp"
+              alt="Security camera mounted on wall"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 600px, 100vw"
+              className="object-cover object-[55%_50%]"
+            />
+          </div>
+        </Reveal>
+      </div>
+    </Section>
   );
 }

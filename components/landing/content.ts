@@ -12,9 +12,6 @@ import {
 export const LOGO_URL =
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/torchline_logo_transparent-beKRLoQoS2NVALqh9y3cZruq4BEO0c.png";
 
-export const COMMAND_CENTER_URL =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-13%20at%2010.06.57%20PM-oZm3C0EK3qGau9X8GvLZdDyCS6YBxx.png";
-
 export const VIDEO_URL =
   "https://pub-e824d08276a445f3a03a35b7112dff8e.r2.dev/torchline_updated.mp4";
 
@@ -22,14 +19,6 @@ export const VIDEO_POSTER_URL =
   "https://dkx9dfh6k5q2jmwm.public.blob.vercel-storage.com/torchline_placeholder.jpg";
 
 export const FORMSPREE_URL = "https://formspree.io/f/xnnezzqb";
-
-export const NAV_LINKS = [
-  { label: "Platform", href: "#platform" },
-  { label: "Monitoring", href: "#monitoring" },
-  { label: "Search", href: "#search" },
-  { label: "Industries", href: "#industries" },
-  { label: "FAQ", href: "#faq" },
-];
 
 export const PILLARS = [
   "Increase Cash Flow",

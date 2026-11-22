@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: "#000000",
+  themeColor: "#14110f",
 }
 
 export default function RootLayout({
@@ -57,7 +57,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    // suppressHydrationWarning: the inline script adds the "js" class before React hydrates.
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Reveal animations only hide content once JS is confirmed running. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <Analytics />

@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 import { cn } from "@/lib/utils";
 import { FORMSPREE_URL } from "./content";
 import { Reveal } from "./motion";
-import { Container, buttonClass } from "./ui";
+import { Accent, Container, buttonClass } from "./ui";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -48,12 +48,15 @@ function DemoForm() {
   const submitting = status === "submitting";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-[6px] border border-line bg-black/60 p-6 backdrop-blur-xl sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto w-full max-w-xl space-y-5 rounded-3xl border border-edge bg-raised/80 p-6 text-left shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-8"
+    >
       <input type="hidden" name="form" value="torchline-demo" />
-      <label htmlFor="demo-email" className="block font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
-        Work Email
-      </label>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <label htmlFor="demo-email" className="sr-only">
+          Work email
+        </label>
         <input
           id="demo-email"
           type="email"
@@ -62,9 +65,9 @@ function DemoForm() {
           autoComplete="email"
           required
           disabled={submitting}
-          className="h-12 w-full rounded-md border border-white/15 bg-white/[0.03] px-4 text-base text-white placeholder:text-zinc-600 transition-colors duration-300 focus:border-torch focus:outline-none disabled:opacity-60"
+          className="h-12 min-w-0 flex-1 rounded-full border border-edge bg-canvas px-5 text-base text-fg placeholder:text-fg-subtle transition-colors duration-300 focus:border-ember focus:outline-none disabled:opacity-60"
         />
-        <button type="submit" disabled={submitting} className={cn(buttonClass(), "w-full disabled:opacity-60")}>
+        <button type="submit" disabled={submitting} className={cn(buttonClass(), "disabled:opacity-60")}>
           {submitting ? "Submitting..." : "Schedule A Demo"}
         </button>
       </div>
@@ -72,12 +75,12 @@ function DemoForm() {
         {status === "error" && errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
         {status === "success" && <p className="text-sm text-emerald-400">Thanks! We&apos;ll be in touch soon.</p>}
       </div>
-      <div className="space-y-1.5 border-t border-line pt-5">
-        <p className="flex items-center gap-2 text-sm text-zinc-400">
-          <ShieldCheck className="h-4 w-4 shrink-0 text-torch" strokeWidth={1.5} aria-hidden />
+      <div className="space-y-1.5">
+        <p className="flex items-center gap-2 text-sm font-medium text-fg-muted">
+          <ShieldCheck className="h-4 w-4 shrink-0 text-accent-fg" aria-hidden />
           No spam. Just product updates.
         </p>
-        <p className="pl-6 text-sm text-zinc-500">
+        <p className="pl-6 text-sm text-fg-subtle">
           We&apos;ll reach out within 1 business day to schedule a personalized walkthrough.
         </p>
       </div>
@@ -87,25 +90,25 @@ function DemoForm() {
 
 export function DemoCta() {
   return (
-    <section id="book-demo" className="relative scroll-mt-16 overflow-hidden border-t border-line">
-      <div aria-hidden className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_50%_100%,black,transparent_75%)]" />
-      <div aria-hidden className="absolute bottom-0 left-1/2 h-[360px] w-[900px] -translate-x-1/2 translate-y-1/2 rounded-full bg-torch/15 blur-[140px]" />
-      <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 animate-scan motion-reduce:hidden bg-gradient-to-b from-transparent via-white/[0.025] to-transparent" />
-      <Container className="relative grid gap-12 py-24 sm:py-32 lg:grid-cols-12 lg:items-end lg:gap-8 lg:py-40">
-        <Reveal className="space-y-6 lg:col-span-7">
-          <h2 className="text-balance text-[40px] font-medium leading-[1] tracking-[-0.04em] sm:text-6xl lg:text-[88px]">
-            Operational Advantage <span className="text-zinc-500">Starts Here.</span>
+    <section id="book-demo" className="tone-dark relative scroll-mt-16 overflow-hidden">
+      {/* torchlight rising from below */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(ellipse_at_50%_100%,rgba(242,106,27,0.32),transparent_65%)]"
+      />
+      <Container className="relative py-28 text-center sm:py-36">
+        <Reveal className="mx-auto max-w-3xl space-y-6">
+          <h2 className="text-balance text-[38px] font-semibold leading-[1.04] tracking-[-0.035em] sm:text-6xl lg:text-[68px]">
+            Operational Advantage <Accent>Starts Here.</Accent>
           </h2>
-          <p className="max-w-xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
+          <p className="mx-auto max-w-xl text-pretty text-lg leading-relaxed text-fg-muted">
             Turn existing cameras into operational intelligence that helps your business run more efficiently and profitably.
           </p>
         </Reveal>
-        <Reveal className="lg:col-span-5" delay={0.1}>
+        <Reveal delay={100} className="mt-10">
           <DemoForm />
         </Reveal>
-      </Container>
-      <Container className="relative pb-10">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">Built by operators. Powered by Vision AI.</p>
+        <p className="mt-10 text-sm text-fg-subtle">Built by operators. Powered by Vision AI.</p>
       </Container>
     </section>
   );

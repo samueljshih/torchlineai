@@ -1,43 +1,34 @@
 import Image from "next/image";
 import { INDUSTRIES } from "./content";
-import { RevealGroup, RevealItem } from "./motion";
-import { Section, SectionHead, TwoTone } from "./ui";
+import { Reveal } from "./motion";
+import { Accent, Section, SectionHead } from "./ui";
 
 export function Industries() {
   return (
-    <Section id="industries">
-      <div className="space-y-14 sm:space-y-20">
-        <SectionHead
-          index="05"
-          kicker="Industries We Serve"
-          title={<TwoTone lead="Purpose-Built For" rest="Frontline Operations" />}
-        />
-        <RevealGroup className="grid gap-4 md:grid-cols-3">
-          {INDUSTRIES.map((industry, i) => (
-            <RevealItem key={industry.title}>
-              <article className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[6px] border border-line bg-surface md:aspect-[3/4]">
+    <Section tone="light">
+      <SectionHead eyebrow="Industries We Serve" title={<>Purpose-Built For <Accent>Frontline Operations</Accent></>} />
+      <div className="mt-14 grid gap-5 md:grid-cols-3 sm:mt-16">
+        {INDUSTRIES.map((industry, i) => (
+          <Reveal key={industry.title} delay={i * 80} as="article">
+            <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-edge bg-raised shadow-[0_1px_2px_rgba(20,17,15,0.04)] transition-[box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(20,17,15,0.35)]">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={industry.image}
                   alt={industry.title}
                   fill
                   unoptimized
                   sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover brightness-[0.8] saturate-[0.8] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                  className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                 />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/0" />
-                <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/70 to-transparent" />
-                <span className="absolute left-4 top-4 rounded-[3px] bg-black/60 px-1.5 py-1 font-mono text-[11px] leading-none tracking-[0.16em] text-white/80 backdrop-blur-sm">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="relative space-y-3 p-5 sm:p-6">
-                  <h3 className="text-2xl font-medium tracking-[-0.02em] text-white sm:text-[28px]">{industry.title}</h3>
-                  <p className="text-sm font-medium leading-relaxed text-zinc-300">{industry.subtypes}</p>
-                  <p className="text-sm leading-relaxed text-zinc-400">{industry.description}</p>
-                </div>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+              </div>
+              <div className="flex flex-1 flex-col gap-2 p-6">
+                <h3 className="text-xl font-semibold tracking-[-0.02em]">{industry.title}</h3>
+                <p className="text-sm font-medium leading-relaxed text-accent-fg">{industry.subtypes}</p>
+                <p className="text-[15px] leading-relaxed text-fg-muted">{industry.description}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </Section>
   );

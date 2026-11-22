@@ -1,9 +1,10 @@
 "use client";
 
-import { MotionConfig, motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-/** One easing curve for every transition on the page. */
+/** One easing curve for every JS-driven transition on the page. */
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function MotionProvider({ children }: { children: ReactNode }) {
@@ -13,49 +14,44 @@ export function MotionProvider({ children }: { children: ReactNode }) {
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  /** Stagger delay in milliseconds. */
   delay?: number;
+  as?: "div" | "li" | "article";
 };
 
-/** Fades and lifts content into place the first time it scrolls into view. */
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, ease: EASE, delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+/**
+ * Fades content up the first time it scrolls into view.
+ * Styling lives in globals.css (.reveal) and only applies when JS is running,
+ * so server-rendered content is never stuck invisible.
+ */
+export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
+  const ref = useRef<HTMLElement>(null);
+  const [shown, setShown] = useState(false);
 
-/** Grid/list wrapper whose RevealItem children animate in sequence. */
-export function RevealGroup({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
-export function RevealItem({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y: 16 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
-      }}
+    <Tag
+      ref={ref as never}
+      className={cn("reveal", className)}
+      data-shown={shown}
+      style={delay ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : undefined}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
