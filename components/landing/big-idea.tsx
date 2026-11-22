@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { COMMAND_CENTER_URL, PILLARS } from "./content";
 import { HudFrame } from "./hud";
@@ -10,13 +10,17 @@ import { Container, Kicker } from "./ui";
 
 function Word({ progress, range, children }: { progress: MotionValue<number>; range: [number, number]; children: string }) {
   const opacity = useTransform(progress, range, [0.16, 1]);
-  return <motion.span style={{ opacity }}>{children} </motion.span>;
+  // Reduced motion is handled in CSS (not useReducedMotion) so server and client markup always match.
+  return (
+    <motion.span style={{ opacity }} className="motion-reduce:!opacity-100">
+      {children}{" "}
+    </motion.span>
+  );
 }
 
 /** Statement whose words brighten one by one as the reader scrolls through it. */
 function ScrollStatement({ lines }: { lines: string[] }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 50%"] });
 
   const words = lines.flatMap((line, lineIndex) => line.split(" ").map((word) => ({ word, lineIndex })));
@@ -29,15 +33,13 @@ function ScrollStatement({ lines }: { lines: string[] }) {
     >
       {lines.map((line, lineIndex) => (
         <span key={line} className={lineIndex > 0 ? "block text-zinc-500" : "block"}>
-          {reduceMotion
-            ? line
-            : words.map(({ word, lineIndex: li }, i) =>
-                li === lineIndex ? (
-                  <Word key={i} progress={scrollYProgress} range={[i / total, (i + 1) / total]}>
-                    {word}
-                  </Word>
-                ) : null,
-              )}
+          {words.map(({ word, lineIndex: li }, i) =>
+            li === lineIndex ? (
+              <Word key={i} progress={scrollYProgress} range={[i / total, (i + 1) / total]}>
+                {word}
+              </Word>
+            ) : null,
+          )}
         </span>
       ))}
     </h2>

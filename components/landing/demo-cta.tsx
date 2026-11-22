@@ -16,6 +16,8 @@ function DemoForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    // Capture fields before the input is disabled; disabled controls are excluded from FormData.
+    const formData = new FormData(form);
 
     try {
       setStatus("submitting");
@@ -24,7 +26,7 @@ function DemoForm() {
       const response = await fetch(FORMSPREE_URL, {
         method: "POST",
         headers: { Accept: "application/json" },
-        body: new FormData(form),
+        body: formData,
       });
 
       if (response.ok) {
@@ -88,7 +90,7 @@ export function DemoCta() {
     <section id="book-demo" className="relative scroll-mt-16 overflow-hidden border-t border-line">
       <div aria-hidden className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_50%_100%,black,transparent_75%)]" />
       <div aria-hidden className="absolute bottom-0 left-1/2 h-[360px] w-[900px] -translate-x-1/2 translate-y-1/2 rounded-full bg-torch/15 blur-[140px]" />
-      <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 animate-scan bg-gradient-to-b from-transparent via-white/[0.025] to-transparent" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 animate-scan motion-reduce:hidden bg-gradient-to-b from-transparent via-white/[0.025] to-transparent" />
       <Container className="relative grid gap-12 py-24 sm:py-32 lg:grid-cols-12 lg:items-end lg:gap-8 lg:py-40">
         <Reveal className="space-y-6 lg:col-span-7">
           <h2 className="text-balance text-[40px] font-medium leading-[1] tracking-[-0.04em] sm:text-6xl lg:text-[88px]">

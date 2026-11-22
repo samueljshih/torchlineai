@@ -52,9 +52,17 @@ export function SignalFlow() {
 
   useLayoutEffect(() => {
     measure();
+    // Nodes can reflow (e.g. labels re-wrapping after the web font swaps in) without the container resizing.
     const observer = new ResizeObserver(measure);
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    [containerRef.current, coreRef.current, ...sourceRefs.current, ...outputRefs.current].forEach(
+      (node) => node && observer.observe(node),
+    );
+    let cancelled = false;
+    document.fonts?.ready.then(() => !cancelled && measure());
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, [measure]);
 
   return (

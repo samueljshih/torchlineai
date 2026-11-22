@@ -7,19 +7,11 @@ import { cn } from "@/lib/utils";
 import { LOGO_URL, NAV_LINKS } from "./content";
 import { ButtonLink, Container } from "./ui";
 
-export function Wordmark({ size = "md" }: { size?: "sm" | "md" }) {
+function Wordmark() {
   return (
     <a href="#top" className="flex items-center gap-2.5" aria-label="Torchline AI home">
-      <Image
-        src={LOGO_URL}
-        alt=""
-        width={32}
-        height={32}
-        className={cn("object-contain", size === "md" ? "h-7 w-7" : "h-6 w-6")}
-      />
-      <span className={cn("font-medium tracking-[-0.02em] text-white", size === "md" ? "text-[17px]" : "text-[15px]")}>
-        Torchline AI
-      </span>
+      <Image src={LOGO_URL} alt="" width={32} height={32} className="h-7 w-7 object-contain" />
+      <span className="text-[17px] font-medium tracking-[-0.02em] text-white">Torchline AI</span>
     </a>
   );
 }

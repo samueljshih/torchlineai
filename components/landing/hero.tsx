@@ -28,7 +28,7 @@ function LiveFeed() {
         className="object-cover brightness-[0.72] contrast-[1.08] saturate-[0.55]"
       />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/50" />
-      <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 animate-scan bg-gradient-to-b from-transparent via-torch/[0.06] to-transparent" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 animate-scan motion-reduce:hidden bg-gradient-to-b from-transparent via-torch/[0.06] to-transparent" />
 
       <DetectionBox x={27.5} y={38.5} w={11.5} h={29} label="Employee" confidence="0.97" delay={0.9} />
       <DetectionBox x={59.5} y={36.5} w={12} h={26} label="Employee" confidence="0.95" delay={1.2} />
@@ -86,8 +86,9 @@ export function Hero() {
 
         <motion.div
           className="lg:col-span-7"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          // Scale only (no fade) so the LCP image paints before hydration.
+          initial={{ scale: 0.985 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}
         >
           <LiveFeed />

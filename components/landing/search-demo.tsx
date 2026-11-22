@@ -54,6 +54,10 @@ export function SearchDemo() {
   const [index, setIndex] = useState(0);
   const [typed, setTyped] = useState(0);
   const [phase, setPhase] = useState<Phase>("typing");
+  /** Set once the visitor picks an example; the demo then stops cycling on its own. */
+  const [userControlled, setUserControlled] = useState(false);
+  /** True while the pointer or keyboard focus is inside the demo. */
+  const [engaged, setEngaged] = useState(false);
 
   const query = EXAMPLE_SEARCHES[index];
   const result = RESULTS[index];
@@ -75,6 +79,7 @@ export function SearchDemo() {
     } else if (phase === "searching") {
       timer = setTimeout(() => setPhase("result"), SEARCH_MS);
     } else {
+      if (userControlled || engaged || reduceMotion) return;
       timer = setTimeout(() => {
         setIndex((i) => (i + 1) % EXAMPLE_SEARCHES.length);
         setTyped(0);
@@ -82,19 +87,32 @@ export function SearchDemo() {
       }, HOLD_MS);
     }
     return () => clearTimeout(timer);
-  }, [inView, phase, typed, query, reduceMotion]);
+  }, [inView, phase, typed, query, reduceMotion, userControlled, engaged]);
 
   function select(next: number) {
+    setUserControlled(true);
     setIndex(next);
     setTyped(0);
     setPhase("typing");
   }
 
   return (
-    <div ref={rootRef} className="overflow-hidden rounded-[6px] border border-line bg-surface">
+    <div
+      ref={rootRef}
+      className="overflow-hidden rounded-[6px] border border-line bg-surface"
+      onMouseEnter={() => setEngaged(true)}
+      onMouseLeave={() => setEngaged(false)}
+      onFocus={() => setEngaged(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setEngaged(false);
+      }}
+    >
+      <p className="sr-only" aria-live="polite">
+        {phase === "result" ? `Top match for "${query}": ${result.store}, ${result.camera} camera, ${result.time}.` : ""}
+      </p>
       <div className="flex items-center gap-3 border-b border-line px-5 py-4 sm:px-6 sm:py-5">
         <Search className="h-4 w-4 shrink-0 text-torch" aria-hidden />
-        <p className="min-w-0 flex-1 truncate text-base text-white sm:text-lg" aria-live="polite">
+        <p className="min-w-0 flex-1 truncate text-base text-white sm:text-lg" aria-hidden>
           {query.slice(0, typed)}
           <span className="ml-px inline-block h-[1.1em] w-px translate-y-[3px] animate-caret bg-torch" aria-hidden />
         </p>
@@ -183,7 +201,7 @@ export function SearchDemo() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="absolute inset-y-0 left-0 w-1/3 animate-sweep bg-gradient-to-r from-transparent via-torch/10 to-transparent" />
+                  <div className="absolute inset-y-0 left-0 w-1/3 animate-sweep motion-reduce:hidden bg-gradient-to-r from-transparent via-torch/10 to-transparent" />
                   <span className="relative font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
                     {phase === "searching" ? "Searching footage…" : "Awaiting query"}
                   </span>

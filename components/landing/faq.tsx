@@ -22,14 +22,16 @@ export function Faq() {
           {FAQ_ITEMS.map((item, i) => {
             const isOpen = open === i;
             const panelId = `faq-panel-${i}`;
+            const buttonId = `faq-button-${i}`;
             return (
               <div key={item.question} className="border-b border-line">
                 <h3>
                   <button
+                    id={buttonId}
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    aria-controls={panelId}
+                    aria-controls={isOpen ? panelId : undefined}
                     className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span
@@ -54,6 +56,7 @@ export function Faq() {
                     <motion.div
                       id={panelId}
                       role="region"
+                      aria-labelledby={buttonId}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

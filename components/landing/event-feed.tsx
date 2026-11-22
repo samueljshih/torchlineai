@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { MONITOR_GROUPS } from "./content";
 import { LiveDot } from "./hud";
 import { EASE } from "./motion";
@@ -38,23 +38,36 @@ function makeEvent(id: number, at: Date): FeedEvent {
 
 /** Scrolling log of recent detections, built from the monitored categories. */
 export function EventFeed() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(rootRef);
+  const reduceMotion = useReducedMotion();
+  const [paused, setPaused] = useState(false);
   const [events, setEvents] = useState<FeedEvent[]>([]);
+  const nextId = useRef(VISIBLE);
 
+  // Seed the backlog once on mount (client-only to avoid hydration mismatches on timestamps).
   useEffect(() => {
     const now = Date.now();
-    setEvents(
-      Array.from({ length: VISIBLE }, (_, i) => makeEvent(VISIBLE - 1 - i, new Date(now - i * 37_000))),
-    );
-    let next = VISIBLE;
+    setEvents(Array.from({ length: VISIBLE }, (_, i) => makeEvent(VISIBLE - 1 - i, new Date(now - i * 37_000))));
+  }, []);
+
+  // Stream new events only while visible, not hovered, and motion is allowed.
+  useEffect(() => {
+    if (!inView || paused || reduceMotion) return;
     const id = setInterval(() => {
-      const event = makeEvent(next++, new Date());
+      const event = makeEvent(nextId.current++, new Date());
       setEvents((prev) => [event, ...prev].slice(0, VISIBLE));
     }, INTERVAL_MS);
     return () => clearInterval(id);
-  }, []);
+  }, [inView, paused, reduceMotion]);
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-[6px] border border-line bg-surface">
+    <div
+      ref={rootRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      className="flex h-full flex-col overflow-hidden rounded-[6px] border border-line bg-surface"
+    >
       <div className="flex items-center justify-between border-b border-line px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-500 sm:text-[11px]">
         <span className="flex items-center gap-2">
           <LiveDot />
