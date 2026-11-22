@@ -57,12 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    // suppressHydrationWarning: the inline script adds the "js" class before React hydrates.
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Reveal animations only hide content once JS is confirmed running. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         {children}
         <Analytics />

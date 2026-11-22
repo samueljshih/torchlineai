@@ -9,14 +9,13 @@ export function Hero() {
     <section id="top" className="tone-dark relative isolate flex min-h-[92svh] items-center overflow-hidden pt-16">
       {/* Art-directed sizes: phones get a 40KB file. Heavy compression is invisible under the overlay. */}
       <picture>
-        <source media="(max-width: 640px)" srcSet="/hero/restaurant-828.webp" />
+        <source media="(max-width: 640px)" srcSet="/hero/dining-828.webp" />
         {/* eslint-disable-next-line @next/next/no-img-element -- <picture> art direction isn't supported by next/image */}
         <img
-          src="/hero/restaurant-1536.webp"
+          src="/hero/dining-1600.webp"
           alt=""
           fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_45%] saturate-[0.85]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_40%]"
         />
       </picture>
       {/* Warm ink overlay keeps text at AA contrast; ember light rises from below */}
@@ -42,7 +41,7 @@ export function Hero() {
         </div>
         <div className="mt-10 flex animate-in flex-col justify-center gap-3 delay-150 duration-700 fill-mode-backwards slide-in-from-bottom-4 motion-reduce:animate-none sm:flex-row">
           <ButtonLink href="#demo-video">See Torchline In Action</ButtonLink>
-          <ButtonLink href="#book-demo" variant="secondary" className="bg-ink/40 backdrop-blur-sm">
+          <ButtonLink href="#book-demo" variant="secondary" className="bg-ink/40 backdrop-blur-sm hover:bg-ink/60">
             Book A Demo
           </ButtonLink>
         </div>

@@ -17,7 +17,7 @@ export function Nav() {
     <header
       className={cn(
         "tone-dark fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-500",
-        scrolled ? "border-edge !bg-ink/[0.94] backdrop-blur-xl" : "border-transparent !bg-transparent",
+        scrolled ? "border-edge bg-ink/[0.94] backdrop-blur-xl" : "border-transparent bg-transparent",
       )}
     >
       <Container className="flex h-16 items-center justify-between">

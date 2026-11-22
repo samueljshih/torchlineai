@@ -33,7 +33,6 @@
 
   /* Torchline palette: warm ink, warm paper, one ember accent */
   --color-ink: #14110f;
-  --color-ink-raised: #1e1a17;
   --color-paper: #f7f4ef;
   --color-ember: #f26a1b;
   --color-ember-hover: #ff7f36;
@@ -85,7 +84,9 @@
   }
 }
 
-/* Section tones. All text pairs meet WCAG AA (>= 4.5:1) on their canvas. */
+/* Section tones. All text pairs meet WCAG AA (>= 4.5:1) on their canvas.
+   In the base layer so utilities (e.g. bg-*) can still override them. */
+@layer base {
 .tone-dark {
   --tone-canvas: #14110f;
   --tone-raised: #1e1a17;
@@ -109,6 +110,7 @@
   background-color: var(--tone-canvas);
   color: var(--tone-fg);
 }
+}
 
 @layer base {
   * {
@@ -131,21 +133,26 @@
 }
 
 /*
- * Scroll reveal. Content is only hidden when JS is running (html.js, set inline in <head>),
- * so the page stays fully readable if scripts fail or are slow.
+ * Scroll reveal. html.reveal-ready is only added after React hydrates (MotionProvider),
+ * so content stays readable if JavaScript is disabled, slow, or fails to load.
  */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(14px);
+.reveal-ready .reveal {
   transition:
     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.js .reveal[data-shown="true"] {
-  opacity: 1;
-  transform: none;
+.reveal-ready .reveal:not([data-shown="true"]) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@media print {
+  .reveal-ready .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -153,9 +160,9 @@
     scroll-behavior: auto;
   }
 
-  .js .reveal {
-    opacity: 1;
-    transform: none;
+  .reveal-ready .reveal {
+    opacity: 1 !important;
+    transform: none !important;
     transition: none;
   }
 
