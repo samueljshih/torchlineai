@@ -1,0 +1,20 @@
+PASS  Nav "FAQ" link scrolls FAQ under the fixed nav  (top=65)
+PASS  FAQ opens
+PASS  Opening another FAQ closes the first
+PASS  FAQ closes on second click
+PASS  Search example click shows its result  (got "Cash drawer opened after close")
+PASS  Search bar shows the clicked query  (got "Cash drawer opened after close")
+PASS  Picked search result is not auto-replaced  (got "Cash drawer opened after close")
+PASS  Screen-reader live region announces only the result  (Top match for "Cash drawer opened after close": Store #12, Register 2 camera, 11:42 PM.)
+PASS  Open FAQ panel is a named region
+PASS  Hero "See Torchline In Action" targets the video
+PASS  Video element present with source
+PASS  Form posts email + form tag to Formspree
+PASS  Form shows success message
+PASS  Form clears the input after success
+PASS  Form shows Formspree error message
+PASS  Empty email is blocked by validation
+PASS  No runtime errors (besides the mocked 422)
+PASS  Reduced motion: statement fully legible
+PASS  Reduced motion: no headings left invisible
+PASS  Reduced motion: no hydration or runtime errors
