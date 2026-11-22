@@ -1,0 +1,40 @@
+## Audits
+PASS  WCAG AA contrast on all text
+PASS  All images load
+PASS  Exactly one h1  (1)
+PASS  Without JavaScript, no content is left invisible  (0 hidden)
+PASS  JS bundle fails to load: content still visible (0 hidden)
+
+## E2E
+PASS  FAQ opens
+PASS  Opening another FAQ closes the first
+PASS  FAQ closes on second click
+PASS  Real product screenshots render  (2 shots)
+PASS  Nav "Book A Demo" targets the form
+PASS  Open FAQ panel is a named region
+PASS  Hero "See Torchline In Action" targets the video
+PASS  Video element present with source
+PASS  Form posts email + form tag to Formspree
+PASS  Form shows success message
+PASS  Form clears the input after success
+PASS  Form shows Formspree error message
+PASS  Empty email is blocked by validation
+PASS  No runtime errors (besides the mocked 422)
+PASS  Reduced motion: statement fully legible
+PASS  Reduced motion: no headings left invisible
+PASS  Reduced motion: no hydration or runtime errors
+
+## Copy diff vs live site
+Visible text not in the original page: [
+  'Increase Cash Flow. Strengthen Accountability.',
+  '04',
+  '05',
+  '07',
+  'Work email',
+  'Torchline AI - Operational Advantage Powered by Vision AI'
+]
+Original visible text missing from the redesign: none
+
+## Mobile performance (simulated Fast 4G + 4x CPU, production build)
+redesign:  LCP 1708ms  CLS 0  (hero photo)
+live site: LCP 3176-4960ms  CLS 0  (text)
