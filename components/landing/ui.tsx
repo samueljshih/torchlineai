@@ -21,7 +21,7 @@ type SectionProps = {
 /** Full-width chapter of the page. Dark and light tones alternate to give the page rhythm. */
 export function Section({ id, tone, children, className, containerClassName }: SectionProps) {
   return (
-    <section id={id} className={cn(`tone-${tone}`, "relative scroll-mt-16 overflow-hidden", className)}>
+    <section id={id} className={cn(`tone-${tone}`, "relative scroll-mt-16 overflow-clip", className)}>
       <Container className={cn("py-24 sm:py-28 lg:py-32", containerClassName)}>{children}</Container>
     </section>
   );

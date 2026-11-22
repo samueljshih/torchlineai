@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { EXAMPLE_SEARCHES } from "./content";
 import { Reveal } from "./motion";
+import { TiltIn } from "./scroll-fx";
 import { Accent, ProductShot, Section, h2Class } from "./ui";
 
 export function SearchSection() {
@@ -31,7 +32,7 @@ export function SearchSection() {
             <p className="text-xl font-semibold tracking-[-0.02em]">Search Less. Know More. Act Faster.</p>
           </Reveal>
         </div>
-        <Reveal delay={100} className="lg:col-span-8">
+        <TiltIn className="lg:col-span-8">
           <ProductShot
             src="/product/visual-search.webp"
             alt="Torchline natural language video search"
@@ -39,7 +40,7 @@ export function SearchSection() {
             height={1500}
             sizes="(min-width: 1240px) 780px, 100vw"
           />
-        </Reveal>
+        </TiltIn>
       </div>
     </Section>
   );

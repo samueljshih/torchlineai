@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BENEFITS } from "./content";
 import { Reveal } from "./motion";
+import { ScrollWords } from "./scroll-fx";
 import { Accent, Section, SectionHead } from "./ui";
 
 export function Why() {
@@ -56,11 +57,10 @@ export function Why() {
         ))}
       </div>
 
-      <Reveal className="mt-14 text-center">
-        <p className="text-balance text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
-          Built for businesses that can&apos;t be everywhere at once.
-        </p>
-      </Reveal>
+      <ScrollWords
+        text="Built for businesses that can't be everywhere at once."
+        className="mx-auto mt-20 max-w-4xl text-balance text-center text-3xl font-semibold leading-[1.15] tracking-[-0.025em] sm:mt-24 sm:text-5xl"
+      />
     </Section>
   );
 }
