@@ -1,26 +1,26 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { LOGO_SRC } from "@/components/landing/brand-mark"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
-
-const TORCHLINE_LOGO_URL =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/torchline_logo_transparent-beKRLoQoS2NVALqh9y3cZruq4BEO0c.png"
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" })
 
 const OG_IMAGE_URL = "/torchline_preview.png"
 
+const TITLE = "Torchline AI - Operational Advantage Powered by Vision AI"
+const DESCRIPTION =
+  "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location."
+
 export const metadata: Metadata = {
-  title: "Torchline AI - Operational Advantage Powered by Vision AI",
-  description:
-    "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
-  generator: "v0.app",
+  title: TITLE,
+  description: DESCRIPTION,
   metadataBase: new URL("https://torchline.ai"),
   openGraph: {
-    title: "Torchline AI - Operational Advantage Powered by Vision AI",
-    description:
-      "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
+    title: TITLE,
+    description: DESCRIPTION,
     siteName: "Torchline AI",
     images: [
       {
@@ -35,17 +35,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Torchline AI - Operational Advantage Powered by Vision AI",
-    description:
-      "Torchline transforms existing camera systems into an operational intelligence platform that helps operators identify inefficiencies, improve accountability, and make better decisions across every location.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: [OG_IMAGE_URL],
   },
   icons: {
-    icon: [
-      { url: TORCHLINE_LOGO_URL, type: "image/png" },
-      { rel: "apple-touch-icon", url: TORCHLINE_LOGO_URL },
-    ],
+    icon: { url: LOGO_SRC, type: "image/png" },
+    apple: "/apple-touch-icon.png",
   },
+}
+
+export const viewport = {
+  themeColor: "#14110f",
 }
 
 export default function RootLayout({
@@ -54,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} font-sans antialiased`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="font-sans antialiased">
         {children}
         <Analytics />
       </body>

@@ -3,76 +3,49 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* shadcn/ui tokens (used by components/ui) */
 :root {
-  /* Updated color scheme for Torchline AI with torch-inspired amber-orange gradients */
-  --background: oklch(0 0 0); /* Pure black */
-  --foreground: oklch(1 0 0); /* Pure white */
-  --card: oklch(0.1 0 0); /* Very dark gray */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.1 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.65 0.22 41); /* Orange */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.65 0.22 41); /* Orange accent */
-  --accent-foreground: oklch(1 0 0);
+  --background: oklch(0.17 0.006 50);
+  --foreground: oklch(0.97 0.008 75);
+  --card: oklch(0.2 0.006 50);
+  --card-foreground: oklch(0.97 0.008 75);
+  --popover: oklch(0.2 0.006 50);
+  --popover-foreground: oklch(0.97 0.008 75);
+  --primary: oklch(0.68 0.19 45);
+  --primary-foreground: oklch(0.17 0.006 50);
+  --secondary: oklch(0.25 0.006 50);
+  --secondary-foreground: oklch(0.97 0.008 75);
+  --muted: oklch(0.25 0.006 50);
+  --muted-foreground: oklch(0.7 0.01 70);
+  --accent: oklch(0.25 0.006 50);
+  --accent-foreground: oklch(0.97 0.008 75);
   --destructive: oklch(0.55 0.25 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.65 0.22 41);
-  --chart-1: oklch(0.65 0.22 41);
-  --chart-2: oklch(0.55 0.25 25);
-  --chart-3: oklch(0.45 0.15 280);
-  --chart-4: oklch(0.7 0.18 150);
-  --chart-5: oklch(0.6 0.2 60);
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.68 0.19 45);
+  --radius: 0.75rem;
 }
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Torchline palette: warm ink, warm paper, one ember accent */
+  --color-ink: #14110f;
+  --color-paper: #f7f4ef;
+  --color-ember: #f26a1b;
+  --color-ember-hover: #ff7f36;
+
+  /* Tone-aware semantic tokens: values come from the nearest .tone-* ancestor */
+  --color-canvas: var(--tone-canvas);
+  --color-raised: var(--tone-raised);
+  --color-fg: var(--tone-fg);
+  --color-fg-muted: var(--tone-fg-muted);
+  --color-fg-subtle: var(--tone-fg-subtle);
+  --color-edge: var(--tone-edge);
+  --color-accent-fg: var(--tone-accent-fg);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -92,45 +65,111 @@ html {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  --animate-signal: signal 3.6s linear infinite;
+  --animate-caret: caret 1s steps(1) infinite;
+
+  @keyframes signal {
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+/* Section tones. All text pairs meet WCAG AA (>= 4.5:1) on their canvas.
+   In the base layer so utilities (e.g. bg-*) can still override them. */
+@layer base {
+.tone-dark {
+  --tone-canvas: #14110f;
+  --tone-raised: #1e1a17;
+  --tone-fg: #f7f4ef;
+  --tone-fg-muted: #bcb4aa;
+  --tone-fg-subtle: #968d84;
+  --tone-edge: rgb(247 244 239 / 0.1);
+  --tone-accent-fg: #ff8a4c;
+  background-color: var(--tone-canvas);
+  color: var(--tone-fg);
+}
+
+.tone-light {
+  --tone-canvas: #f7f4ef;
+  --tone-raised: #ffffff;
+  --tone-fg: #14110f;
+  --tone-fg-muted: #544d47;
+  --tone-fg-subtle: #6b635c;
+  --tone-edge: rgb(20 17 15 / 0.1);
+  --tone-accent-fg: #c2410c;
+  background-color: var(--tone-canvas);
+  color: var(--tone-fg);
+}
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    /* non-static so framer-motion can measure scroll-linked targets */
+    position: relative;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-ink text-paper;
+  }
+
+  ::selection {
+    background: rgb(242 106 27 / 0.3);
   }
 }
 
-/* Added smooth scroll behavior for better UX */
-html {
-  scroll-behavior: smooth;
+/*
+ * Scroll reveal. html.reveal-ready is only added after React hydrates (MotionProvider),
+ * so content stays readable if JavaScript is disabled, slow, or fails to load.
+ */
+.reveal-ready .reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
+.reveal-ready .reveal:not([data-shown="true"]) {
+  opacity: 0;
+  transform: translateY(14px);
 }
 
-.animate-gradient {
-  animation: gradient-shift 4s ease infinite;
+@media print {
+  .reveal-ready .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-ready .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
