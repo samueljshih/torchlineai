@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { LOGO_URL } from "@/components/landing/content"
+import { LOGO_SRC } from "@/components/landing/brand-mark"
 import "./globals.css"
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" })
@@ -40,10 +40,8 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
   icons: {
-    icon: [
-      { url: LOGO_URL, type: "image/png" },
-      { rel: "apple-touch-icon", url: LOGO_URL },
-    ],
+    icon: { url: LOGO_SRC, type: "image/png" },
+    apple: "/apple-touch-icon.png",
   },
 }
 

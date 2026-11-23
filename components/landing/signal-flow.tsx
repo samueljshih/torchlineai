@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Camera } from "lucide-react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { LOGO_URL, MONITOR_GROUPS } from "./content";
+import { BrandMark } from "./brand-mark";
+import { MONITOR_GROUPS } from "./content";
 
 const CAMERA_COUNT = 5;
 const OUTPUTS = MONITOR_GROUPS.map((group) => group.label);
@@ -110,7 +110,7 @@ export function SignalFlow() {
         ref={coreRef}
         className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-ember/50 bg-canvas shadow-[0_0_60px_-6px_rgba(242,106,27,0.55)] sm:h-20 sm:w-20"
       >
-        <Image src={LOGO_URL} alt="" width={48} height={48} className="h-9 w-9 object-contain sm:h-11 sm:w-11" />
+        <BrandMark className="h-11 sm:h-14" />
       </div>
 
       <span />

@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { LOGO_URL } from "./content";
+import { BrandMark } from "./brand-mark";
 import { ButtonLink, Container } from "./ui";
 
 export function Nav() {
@@ -21,8 +20,8 @@ export function Nav() {
       )}
     >
       <Container className="flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5" aria-label="Torchline AI home">
-          <Image src={LOGO_URL} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+        <a href="#top" className="flex items-center gap-3" aria-label="Torchline AI home">
+          <BrandMark className="h-11" />
           <span className="text-[17px] font-semibold tracking-[-0.02em]">Torchline AI</span>
         </a>
         <ButtonLink href="#book-demo" size="sm">

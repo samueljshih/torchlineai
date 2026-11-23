@@ -9,9 +9,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export const LOGO_URL =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/torchline_logo_transparent-beKRLoQoS2NVALqh9y3cZruq4BEO0c.png";
-
 export const VIDEO_URL =
   "https://pub-e824d08276a445f3a03a35b7112dff8e.r2.dev/torchline_updated.mp4";
 
